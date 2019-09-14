@@ -1,6 +1,6 @@
 \documentclass[conference]{IEEEtran}
 \IEEEoverridecommandlockouts
-% The preceding line is only needed to identify funding in the first footnote. If that is unneeded, please comment it out.
+
 \usepackage{cite}
 \usepackage{amsmath,amssymb,amsfonts}
 \usepackage{algorithmic}
@@ -83,30 +83,10 @@ In this work we estimate the number of spontaneous emissions by measuring stimul
 
 This article is set up as follows: A general overview of the driven Jaynes-Cummings model is presented in section two. In section three we obtain probability distributions that relate the number of spontaneous and cavity emissions. In section four we calculate the correlation between the two variables. Concluding remarks are given in section six.
 
-%consideeron an initially ground state 0 photons
 
-%\begin{center}
-%\begin{figure}[t!]
-%\begin{center}
-%\includegraphics[scale = 0.45]{image_paper11.png}
-%\caption{\small{Calculation of correlation using 500 time intervals, fixing $\expval{n} \approx 1$, $\gamma =$ 1.0, $g = $ 0.1, and with  $\mathcal{E} =  \kappa |\langle n \rangle|[1 + 2g^2/\gamma \kappa]$.}} \label{corrxy}
-%\end{center}  
-%\end{figure}
-%\end{center}
-
-%\begin{center}
-%\begin{figure}[t!]
-%\begin{center}
-%\includegraphics[scale = 0.45]{image_paper222.png}
-%\caption{\small{Calculation of correlation using 500 time intervals, fixing $\expval{n} \approx 1$, $\gamma =$ 1.0, $g = $ 0.1, and with  $\mathcal{E} =  \kappa |\langle n \rangle|[1 + 2g^2/\gamma \kappa]$.}} \label{corrxy}
-%\end{center}  
-%\end{figure}
-%\end{center}
 \section{Driven Jaynes-Cummings model}
 We consider a system consisting of a two-level atom, coupled to a mode of a cavity. The mode is driven by a coherent field resonant with the atom and the mode of the cavity. In order to account for dissipation one may use a non-hermitian Hamiltonian to describe the system \cite{bla}, which will be useful at the moment of using quantum trajectory theory. Such Hamiltonian can be separated into hermitian and non-hermitian terms.
-%\begin{equation}
-%H = H_s - \frac{i\hbar}{2}\sum_m C^\dagger_n C_n .
-%\end{equation}
+
 The hermitian part of our Hamiltonian is given by $H_s$ which for the driven Jaynes-Cumming, under the rotating wave approximation, reads as
 \begin{equation}
 H_s = H_{at} + H_{cav} + H_{atcav} + H_{lascav}, \label{mainham}  
@@ -145,33 +125,7 @@ H_{dec} = - i\hbar\frac{\gamma}{2}\sigma_+\sigma_-,
 H_{leak} = - i\hbar\kappa a^\dagger a.
 \end{equation}
 \end{subequations}
-The annihilation operator $a$ of a single photon in the cavity, and the creation operator $a^\dagger$ obey $[a, a^\dagger] = 1$, while the operators $\sigma_-, \sigma_+$  account for the atomic lowering and raising operators, respectively, and the operator $\sigma_z$ accounts for the population difference between the atomic levels. These operators obey $[\sigma_+, \sigma_-] = \sigma_z, \ [\sigma_\pm, \sigma_z] = \mp 2\sigma_\pm$. $\kappa$ and $\gamma$ are the cavity loss and spontaneous decay rate.\\ %With the Hamiltonian Eq. \eqref{mainham} we can write down the master equation for the driven Jaynes-Cummings model in its Lindblad form
-%\begin{equation}
-%\frac{\partial \rho}{\partial t} = -\frac{i}{\hbar} [H(t), \rho]  + \mathcal{L}_\kappa \rho + \mathcal{L}_{\gamma} \rho,
-%\end{equation}
-%where 
-%\begin{equation}
-%\mathcal{L}_\kappa  \rho =  \mathcal{D}[\sqrt{2\kappa}a] \rho, 
-%\end{equation}
-%and
-%\begin{equation}
-%\mathcal{L}_\gamma \rho = \ \mathcal{D}[\sqrt{\gamma}\sigma_-] \rho,
-%\end{equation}
-%where $\mathcal{D}$ is a superoperator that will act on the density matrix as
-%\begin{equation}
-%\mathcal{D}[C] = \frac{1}{2}[2C\rho C^\dagger - C^\dagger C \rho - \rho C^\dagger   C],
-%\end{equation}
-%where we identify $C$ as the jump operators which will be the ones that will cause the dissipation in the system when we work using quantum trajectory theory.
-%\begin{figure*}[t!]
-%\includegraphics[scale = 0.8]{phases.png}
-%\end{figure*}
-%\begin{SCfigure*}[0.9][!h] \label{figsis}
-
-%\includegraphics[scale = 0.8]{phases2.png}
-%\caption{\small{Trayectorias cuánticas de prueba correspondientes a la ecuación maestra \eqref{masterbioptical} en el límite de acoplamiento fuerte mostrando el número promedio de fotones: $g/\kappa = 10, \gamma/2\kappa =  1$, y (a) $  \mathcal{E}/\kappa = $ 3.0; (b) $\mathcal{E}/\kappa = $ 5.0; (c) $\mathcal{E}/\kappa = $ 9.0.}}
-%\label{figsis}
-%\end{SCfigure*}
-
+The annihilation operator $a$ of a single photon in the cavity, and the creation operator $a^\dagger$ obey $[a, a^\dagger] = 1$, while the operators $\sigma_-, \sigma_+$  account for the atomic lowering and raising operators, respectively, and the operator $\sigma_z$ accounts for the population difference between the atomic levels. These operators obey $[\sigma_+, \sigma_-] = \sigma_z, \ [\sigma_\pm, \sigma_z] = \mp 2\sigma_\pm$. $\kappa$ and $\gamma$ are the cavity loss and spontaneous decay rate.\\ %With the Hamiltonian Eq. 
 \section{Estimation of spontaneous emissions}
 In this section we obtain estimations for the number of spontaneous emissions by measuring stimulated emission in a cavity mode in the driven Jaynes-Cummings model, using quantum trajectory theory.
 \subsection{Probability distributions of emissions}
@@ -226,21 +180,10 @@ In Fig.\ref{probdiss} we see the probability of obtaining different number of sp
 \STATE Initial conditions:
 \STATE $N_A = 0; N_C = 0;$
 \STATE $N_{CA} = \text{zeros}(N_{max},2);  k = 0;$ 
-%\STATE $\delta p > \epsilon$
-%\STATE $\ket{\phi (t = 0)} = \ket{0}\otimes \ket{\downarrow}$ 
-\STATE 
-%\end{enumerate}
-%\IF $p^T_c \geq \epsilon $
-%\compute casa
-%\FORALL {$i$ in $S_i$}
-%\IF
-%\IF {$\delta p > \epsilon$}
 
-%\FOR{$i = 1$ to N} 
-%\STATE $\ket{ \phi^1(t + \delta t)} = e^{-iH\delta t/\hbar}\ket{\phi (t)}$
-%\STATE$ \delta p_1 = \delta t\bra{\phi(t)}C^\dagger_1 C_1\ket{\phi(t)}$
-%\STATE $ \delta p_2 =  \delta t\bra{\phi(t)}C^\dagger_2 C_2\ket{\phi(t)}$
-%\STATE $\delta p = \delta p_1 + \delta p_2$
+\STATE 
+
+
 \FOR{$i = 1$ to N} 
 \STATE $\ket{ \phi^1(t + \delta t)} = e^{-iH\delta t/\hbar}\ket{\phi (t)}$
 \STATE$ \delta p_1 = \delta t\bra{\phi(t)}C^\dagger_1 C_1\ket{\phi(t)}$
@@ -267,14 +210,9 @@ In Fig.\ref{probdiss} we see the probability of obtaining different number of sp
 \ENDIF
 \ENDFOR
 \RETURN  $N_{CA}$
-%\STATE $t \ += \delta t$
-%\ENDFOR
-%\ENDIF
-%\ENDIF
-%\ENDFOR
-%\end{enumerate}
+
 \end{algorithmic}
-%\caption{Algoritmo para obtener distribución de probabilidad de número de emisiones espontáneas}
+
 \end{algorithm}
 
 
@@ -358,8 +296,6 @@ Having an equation that gives us a measure of the correlation, now we want the n
 %kncrease or increases
 From Fig. \ref{corrxy} we see that, as we expected, the correlation goes to zero as we increase the cavity linewidth. Nonetheless, perhaps a more interesting question is: how high can this correlation be? Trying with values for $\kappa/\gamma$ lower than $0.1$, we notice that the correlation's increase stops and a decrease begins. It is possible that this stop in the increase of the correlation is due to the fact that if we keep decreasing the cavity linewidth it will come a point where the number of emissions will decrease considerably, diminishing the correlation. If this is the case we should expect that as we increase the temporal intervals, %the cavity linewidth at which the correlation starts decreasing should be smaller.
 we also see an increment of the correlation.
-
-%In Fig. \ref{errorzz} we can appreciate that, as we increase the total temporal interval, the cavity linewidth at which the correlation starts decreasing is smaller. This supports the idea that the time that takes for the system in stablishing the number photons will affect the minimum value of cavity linewidth at which the correlation starts decreasing.
 
 In Fig. \ref{errorzz} we can appreciate that, as we increase the total temporal interval, there is also a slight increase in the correlation. This supports the idea that the time that takes for the system in stablishing the number photons will affect the value for the correlation, for values of $\kappa/\gamma$ lower than $0.1$.
 
