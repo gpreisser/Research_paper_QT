@@ -145,32 +145,7 @@ H_{dec} = - i\hbar\frac{\gamma}{2}\sigma_+\sigma_-,
 H_{leak} = - i\hbar\kappa a^\dagger a.
 \end{equation}
 \end{subequations}
-The annihilation operator $a$ of a single photon in the cavity, and the creation operator $a^\dagger$ obey $[a, a^\dagger] = 1$. The operators $\sigma_-, \sigma_+$  account for the atomic lowering and raising operators, respectively, and the operator $\sigma_z$ accounts for the population difference between the atomic levels. These operators obey $[\sigma_+, \sigma_-] = \sigma_z, \ [\sigma_\pm, \sigma_z] = \mp 2\sigma_\pm$. $\kappa$ and $\gamma$ are the cavity loss and spontaneous decay rate.\\ %With the Hamiltonian Eq. \eqref{mainham} we can write down the master equation for the driven Jaynes-Cummings model in its Lindblad form
-%\begin{equation}
-%\frac{\partial \rho}{\partial t} = -\frac{i}{\hbar} [H(t), \rho]  + \mathcal{L}_\kappa \rho + \mathcal{L}_{\gamma} \rho,
-%\end{equation}
-%where 
-%\begin{equation}
-%\mathcal{L}_\kappa  \rho =  \mathcal{D}[\sqrt{2\kappa}a] \rho, 
-%\end{equation}
-%and
-%\begin{equation}
-%\mathcal{L}_\gamma \rho = \ \mathcal{D}[\sqrt{\gamma}\sigma_-] \rho,
-%\end{equation}
-%where $\mathcal{D}$ is a superoperator that will act on the density matrix as
-%\begin{equation}
-%\mathcal{D}[C] = \frac{1}{2}[2C\rho C^\dagger - C^\dagger C \rho - \rho C^\dagger   C],
-%\end{equation}
-%where we identify $C$ as the jump operators which will be the ones that will cause the dissipation in the system when we work using quantum trajectory theory.
-%\begin{figure*}[t!]
-%\includegraphics[scale = 0.8]{phases.png}
-%\end{figure*}
-%\begin{SCfigure*}[0.9][!h] \label{figsis}
-
-%\includegraphics[scale = 0.8]{phases2.png}
-%\caption{\small{Trayectorias cuánticas de prueba correspondientes a la ecuación maestra \eqref{masterbioptical} en el límite de acoplamiento fuerte mostrando el número promedio de fotones: $g/\kappa = 10, \gamma/2\kappa =  1$, y (a) $  \mathcal{E}/\kappa = $ 3.0; (b) $\mathcal{E}/\kappa = $ 5.0; (c) $\mathcal{E}/\kappa = $ 9.0.}}
-%\label{figsis}
-%\end{SCfigure*}
+The annihilation operator $a$ of a single photon in the cavity, and the creation operator $a^\dagger$ obey $[a, a^\dagger] = 1$. The operators $\sigma_-, \sigma_+$  account for the atomic lowering and raising operators, respectively, and the operator $\sigma_z$ accounts for the population difference between the atomic levels. These operators obey $[\sigma_+, \sigma_-] = \sigma_z, \ [\sigma_\pm, \sigma_z] = \mp 2\sigma_\pm$. $\kappa$ and $\gamma$ are the cavity loss and spontaneous decay rate.\\ 
 
 \section{Estimation of spontaneous emissions}
 In this section we obtain estimations for the number of spontaneous emissions by measuring stimulated emission in a cavity mode in the driven Jaynes-Cummings model, using quantum trajectory theory.
@@ -226,21 +201,9 @@ In Fig.\ref{probdiss} we see the probability of obtaining different number of sp
 \STATE Initial conditions:
 \STATE $N_A = 0; N_C = 0;$
 \STATE $N_{CA} = \text{zeros}(N_{max},2);  k = 0;$ 
-%\STATE $\delta p > \epsilon$
-%\STATE $\ket{\phi (t = 0)} = \ket{0}\otimes \ket{\downarrow}$ 
-\STATE 
-%\end{enumerate}
-%\IF $p^T_c \geq \epsilon $
-%\compute casa
-%\FORALL {$i$ in $S_i$}
-%\IF
-%\IF {$\delta p > \epsilon$}
 
-%\FOR{$i = 1$ to N} 
-%\STATE $\ket{ \phi^1(t + \delta t)} = e^{-iH\delta t/\hbar}\ket{\phi (t)}$
-%\STATE$ \delta p_1 = \delta t\bra{\phi(t)}C^\dagger_1 C_1\ket{\phi(t)}$
-%\STATE $ \delta p_2 =  \delta t\bra{\phi(t)}C^\dagger_2 C_2\ket{\phi(t)}$
-%\STATE $\delta p = \delta p_1 + \delta p_2$
+\STATE 
+
 \FOR{$i = 1$ to N} 
 \STATE $\ket{ \phi^1(t + \delta t)} = e^{-iH\delta t/\hbar}\ket{\phi (t)}$
 \STATE$ \delta p_1 = \delta t\bra{\phi(t)}C^\dagger_1 C_1\ket{\phi(t)}$
@@ -259,7 +222,7 @@ In Fig.\ref{probdiss} we see the probability of obtaining different number of sp
 \IF{$N_C == N_{max}$}
 \STATE \textbf{\textit{break}}
 \ENDIF
-%\STATE $x$ was less than the minimum threshold
+
 \ENDIF
 \ELSE
 \STATE $\ket{ \phi(t + \delta t)} = \frac{\ket{\phi^1 (t+ \delta t)}}{\sqrt{1-\delta p}}$
@@ -267,14 +230,9 @@ In Fig.\ref{probdiss} we see the probability of obtaining different number of sp
 \ENDIF
 \ENDFOR
 \RETURN  $N_{CA}$
-%\STATE $t \ += \delta t$
-%\ENDFOR
-%\ENDIF
-%\ENDIF
-%\ENDFOR
-%\end{enumerate}
+
 \end{algorithmic}
-%\caption{Algoritmo para obtener distribución de probabilidad de número de emisiones espontáneas}
+
 \end{algorithm}
 
 
