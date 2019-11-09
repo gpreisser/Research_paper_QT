@@ -15,6 +15,7 @@
 \usepackage{cite}
 \usepackage{physics}
 \usepackage{bm}
+\usepackage[draft,inline,nomargin]{fixme} \fxsetup{theme=color}
 \usepackage{enumitem}
 \usepackage{a4wide}
 \usepackage{dsfont}
@@ -40,7 +41,7 @@
     T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
 \begin{document}
 
-\title{Correlation between atom and cavity emissions in a driven Jaynes-Cummings system\\
+\title{Correlation between different emission channels from an atom inside a leaky driven cavity\\
 %{\footnotesize \textsuperscript{*}Note: Sub-titles are not captured in Xplore and
 %should not be used}
 \thanks{corresponding author e-mail: guillermopreisser@hotmail.com}
@@ -56,40 +57,121 @@ Dated: 15 August, 2019}
 \maketitle
 
 \begin{abstract}
-We consider a driven Jaynes-Cummings system under weak coupling, which interacts with the environment through emissions from the atom and emissions that leak through one of the lateral cavity mirrors.  We fix the parameters of the model in order to stablish a dynamic in which the number of photons in the leaky cavity remain constant and, using quantum trajectory theory, we estimate the number of spontaneous emissions in the two-level atom – which will be measured from the upper side of the cavity – by measuring emissions that leak through one of the semi-transparent cavity mirrors. Studying the system further we find that the cavity generates a correlation between the emissions from the two sources.
+  A two level atom in free space does not show any correlation between
+  photons emitted in different directions. We consider a two level
+  atom inside a driven leaky cavity. We consider two atomic emission
+  channels: emission to cavity modes and emission to no-cavity modes.
+  Using the quantum trajectory formalism we study the correlation
+  between photons emitted into cavity modes and that leak the cavity
+  through its mirror, with photons that are emitted into the rest of
+  the modes. We find that the cavity generates a correlation between
+  the two emission channels.
 \end{abstract}
 
 %the recent advances?
 \section{Introduction}
-Spontaneous emission is a phenomenon that has been studied formally since early XX century \cite{10.2307/94746, 1917PhyZ...18..121E}. One of the main characteristics of spontaneous emission is that, while it is known that an atom will decay exponentially, the exact time of emission, as well as the direction in  which the photon is emitted, is random, which difficults its measurement. On the other hand, photons emitted from a stimulated cavity are easy to measure, partly due the fact that we know that they leave the cavity through one of the lateral mirrors \cite{326305, doi:10.1063/1.113345}. One of the main sources for single photons are two-level atoms. However, due to the randomness of the direction in which the photons are emitted, there are difficulties in managing such sources. To sort out this difficulty one could think of a physical arrangement, in which the two-level atom is coupled to the stimulated mode of a cavity, as it is shown in Fig. \ref{asa} (b). In this physical arrangement, which is known as the driven Jaynes-Cummings model, one could try to estimate the number of spontaneous emissions of the atom, which are emitted in the upper and lower directions of the system, by measuring the photons that leak through one of the cavity mirrors, on the lateral side. In the case that a correlation exists between the two quantities, this could turn useful in the manipulation of two-level atoms as single photon sources. 
+Spontaneous emission is a phenomenon that has been studied since the
+early XX century \cite{10.2307/94746, 1917PhyZ...18..121E}. One of the
+main characteristics of spontaneous emission is that
+\fxnote{spontaneus emission no es exponencial, es aproximadamente
+  exponencial, si quitas la aproximacion markoviana te queda una cola
+  polinomial, quite la oracion} the exact time of emission, as well as
+the direction in which the photon is emitted, is random, which
+difficults its measurement. On the other hand, photons emitted from a
+cavity are easy to measure, partly due the fact that we know that they
+leave the cavity through one of the lateral mirrors \cite{326305,
+  doi:10.1063/1.113345}. The randomness of the direction in which the
+photons are emitted by atoms in free space difficults photon counting
+experiments. To sort out this difficulty one could think of a physical
+arrangement, in which the two-level atom is coupled to the stimulated
+mode of a cavity, as it is shown in Fig. \ref{asa} (b). In this
+physical arrangement, \fxnote*{tienes una cita donde lo nombren
+  asi?}{which is known as the driven Jaynes-Cummings model}, one could
+try to estimate the number of spontaneous emissions of the atom
+--which are emitted in modes that are not cavity modes and therefore
+escape the cavity-- by measuring the photons that leak through one of
+the cavity mirrors. In the case that a
+correlation exists between the two quantities, we can count the number
+of photons that leak the cavity through its mirror, which is easy to
+measure, to find information about the number of photons emitted into
+the other modes (spontaneus emission), which are difficult to measure.
 \begin{center}
 \begin{figure*}\label{asa}
 \begin{center}
 \includegraphics[scale = 0.65]{newimagepaper.pdf}
 %\includegraphics[scale = 0.45]{image_paper222.png}
-\caption{\small{Physical arrangements of atom and atom in a cavity. In both of these arrangements we consider a source which stimulates the atom provoking it to spontaneously emit, once it decays. We consider a detector in two directions, and we keep a register of the number of photons measured in each direction. (a) In the case for the atom we don't expect a correlation between m (the number of photons measured in the upper side of the atom) and n (the number of photons measured in the right side of the atom); (b) for the atom in the cavity (a cavity with some loss rate) we study the possibility that the cavity generates a correlation between the emissions of the atom and the emissions of the cavity, which correspond to the emissions that leak through mirror 2.}} \label{probdisult}
+\caption{\small{Physical arrangements of atom and atom in a cavity. In
+    both of these arrangements we consider a source which stimulates
+    the atom provoking it to spontaneously emit, once it decays. We
+    consider a detector in two directions, and we keep a register of
+    the number of photons measured in each direction. (a) In the case
+    for the atom we don't expect a correlation between m (the number
+    of photons measured in the upper side of the atom) and n (the
+    number of photons measured in the right side of the atom); (b) for
+    the atom in the cavity (a cavity with some loss rate) we study the
+    possibility that the cavity generates a correlation between the
+    emissions of the atom and the emissions of the cavity, which
+    correspond to the emissions that leak through mirror
+    2.}} \label{probdisult}
 \end{center}
 \end{figure*}
 \end{center}
 
 
-It is easy to see why there would be no correlation between the directions of the emissions in the case for the two-level atom, without cavity. At the moment of modelling such physical system we consider a Markovian dynamic (i.e., the environment relaxes rapidly to an equilibrium state and on relevant timescales has no memory of previous interactions with the system \cite{daley2014quantum}). Given that the only way for a correlation to happen between the two emissions would be if one the emissions stay registered in the environment and, somehow, later influence the quantum system at a later time; by taking account of the Markovian dynamic we can have certainty that there is no direct correlation between the number of emissions of each source. Nevertheless, for the case of the atom coupled to a mode of a cavity, before a photon is emitted, it will most likely interact with the atom for some time. We consider the possibility that this interaction with the atom before the emission could contribute to the generation of a correlation between the emissions, which is what we study further in this paper.
+In the case of a two-level atom in free space, the absence of
+correlation between different channels is the result of the markovian
+approximation, which assumes that the environment has no memory of
+previous interactions with the system \cite{daley2014quantum}. Two
+atomic emissions would be correlated if one of the emissions stay
+registered in the environment and, somehow, influence the second
+emission of a two-level atom at a later time; the Markovian
+approximation does not allow memory effects and there is no
+correlation between the number of emissions of each source: knowing
+the number of photons emitted in some region of the space during some
+time does not give me any information on the number of photons emitted
+in other region of the space. Nevertheless, for the case of an atom
+inside a cavity, before a photon leaks the cavity, it will interact
+with the atom for some time. This interaction with the atom before the
+emission generates a correlation between photons that leak the cavity
+through its mirror and photons that leak the cavity through its side.
 
-In order to simulate quantum systems with dissipation and loss of coherence, like the one we deal with in this work, we use quantum trajectory theory. %Quantum trajectory was developed for various groups at the beginning of the 90's
-One can define a quantum trajectory as the description of a continuously monitored quantum system conditioned on a particular past history of coherent evolution and collapse \cite{Carmichael1993Open}. These trajectories are simulated through a stochastic process, which define the times when the collapses occur.
+We use quantum trajectory theory to theoretically calculate the
+correlation between different emission channels. A quantum trajectory
+is the description of a continuously monitored quantum system
+conditioned on a particular past history of coherent evolution and
+collapse \cite{Carmichael1993Open}. These trajectories are simulated
+through a stochastic process, which define the times when the
+collapses occur. Each trajectory gives us the number of photon emitted
+in each channel. Simulating a large number of trajectories and
+registering the number of photon emissions into the two channels, we
+obtain its correlation. The correlation varies with the cavity
+linewidth and the atom-cavity coupling. For a very bad cavity we
+recover the free space result: there is no correlation between the two
+channels.
 
-In this work we estimate the number of spontaneous emissions by measuring stimulated emissions in an optical cavity and we calculate the existing correlation between the two emissions. This is done via quantum trajectories in which, by doing a large number of simulation and making a register of the number of spontaneous emissions and cavity emissions, we obtain probability distributions which relates these two quantities. We proceed in doing numerical calculations in order to prove that there is a correlation between two quantities, and we see how this correlation varies with respect to the cavity linewidth. \\
+
+This article is organized as follows: A general overview of the driven
+Jaynes-Cummings model is presented in section \ref{sc:drivenjc}. In
+section \ref{sc:distributions} we obtain probability distributions
+that relate the number of spontaneous and cavity emissions. In section
+\ref{sc:correlation} we calculate the correlation between the two variables.
+Concluding remarks are given in section \ref{sc:conclusions}
 
 
-This article is set up as follows: A general overview of the driven Jaynes-Cummings model is presented in section two. In section three we obtain probability distributions that relate the number of spontaneous and cavity emissions. In section four we calculate the correlation between the two variables. Concluding remarks are given in section six.
-
-
-\section{Driven Jaynes-Cummings model}
-We consider a system consisting of a two-level atom, coupled to a mode of a cavity. The mode is driven by a coherent field resonant with the atom and the mode of the cavity. In order to account for dissipation one may use a non-hermitian Hamiltonian to describe the system \cite{bla}. Using this description for the system will turn useful at the moment of using quantum trajectory theory. Such Hamiltonian can be separated into hermitian and non-hermitian terms.
+\section{Driven Jaynes-Cummings model}\label{sc:drivenjc}
+We consider a system consisting of a two-level atom, coupled to a mode
+of a leaky cavity. The mode is driven by a coherent field resonant
+with the atomic transition and the cavity mode.
+% In order to account for
+% dissipation one may use a non-hermitian Hamiltonian to describe the
+% system \cite{bla}. Using this description for the system will turn
+% useful at the moment of using quantum trajectory theory. Such
+% Hamiltonian can be separated into hermitian and non-hermitian terms.
 %\begin{equation}
 %H = H_s - \frac{i\hbar}{2}\sum_m C^\dagger_n C_n .
 %\end{equation}
-The hermitian part of our Hamiltonian is given by $H_s$ which for the driven Jaynes-Cumming, under the rotating wave approximation, reads as
+The Hamiltonian of this system, in the rotating wave approximation is
+given by
 \begin{equation}
 H_s = H_{at} + H_{cav} + H_{atcav} + H_{lascav}, \label{mainham}  
 \end{equation}
@@ -101,7 +183,8 @@ H_{at} = \tfrac{1}{2}\hbar \omega \sigma_z,
 \begin{equation}
 H_{cav} = \hbar \omega  a^\dagger a,  
 \end{equation}
-while the coupling between atom and cavity, and cavity and coherent field are
+while the coupling between atom and cavity, and cavity and coherent
+field are
 \begin{equation}
 H_{atcav} = i\hbar g(a\sigma_+ - a^\dagger \sigma_-),    
 \end{equation}
@@ -109,61 +192,100 @@ H_{atcav} = i\hbar g(a\sigma_+ - a^\dagger \sigma_-),
 H_{lascav} = i\hbar \mathcal{E}(ae^{i\omega t} - a^\dagger e^{-i\omega t}),    
 \end{equation}
 \end{subequations}
-where we introduced the coupling constant
+where the annihilation operator $a$ of a single photon in the cavity,
+and the creation operator $a^\dagger$ obey $[a, a^\dagger] = 1$. The
+operators $\sigma_-, \sigma_+$ account for the atomic lowering and
+raising operators, respectively, and the operator $\sigma_z$ accounts
+for the population difference between the atomic levels. These
+operators obey
+$[\sigma_+, \sigma_-] = \sigma_z, \ [\sigma_\pm, \sigma_z] = \mp
+2\sigma_\pm$. The strength of the coupling between atom and cacity
+field is given by the constant
 \begin{equation}
 g = \sqrt{\frac{\omega d^2}{2\hbar \epsilon_0 V_Q}},
 \end{equation}
-with the mode volume $V_Q$, dipolar coupling constant $d$, and $\epsilon_0$ is the permitivity of free space. $\mathcal{E}$ is a term proportional to the coherent field amplitude.
-As for the non-hermitian part of our Hamiltonian, we have
+where $V_Q$ is the mode volume , $d$ is the atomic dipole , and
+$\epsilon_0$ is the permitivity of free space. $\mathcal{E}$ is a term
+proportional to the coherent field amplitude. Dissipation is
+introduced by the following non-hermitian Hamiltonian
 \begin{equation} \label{nh}
 H_{nh} = H_{dec} + H_{leak},
 \end{equation}
-where the terms corresponding to the spontaneous emission of the atom and the cavitty losses are
+where the terms corresponding to spontaneous emission of the atom and cavity losses are
 \begin{subequations}
 \begin{equation}
 H_{dec} = - i\hbar\frac{\gamma}{2}\sigma_+\sigma_-,
 \end{equation}
 \begin{equation}
-H_{leak} = - i\hbar\kappa a^\dagger a.
+H_{leak} = - i\hbar\kappa a^\dagger a\, .
 \end{equation}
 \end{subequations}
-The annihilation operator $a$ of a single photon in the cavity, and the creation operator $a^\dagger$ obey $[a, a^\dagger] = 1$. The operators $\sigma_-, \sigma_+$  account for the atomic lowering and raising operators, respectively, and the operator $\sigma_z$ accounts for the population difference between the atomic levels. These operators obey $[\sigma_+, \sigma_-] = \sigma_z, \ [\sigma_\pm, \sigma_z] = \mp 2\sigma_\pm$. $\kappa$ and $\gamma$ are the cavity loss and spontaneous decay rate.\\ 
+where $\kappa$ and $\gamma$ are the cavity loss and spontaneous decay
+rate. The evolution between jumps is given by $H=H_s+H_{nh}$. This
+evolution is interrumped by spontaneus emission by the atom or when a
+photon leaks the cavity. 
 
-\section{Estimation of spontaneous emissions}
-In this section we obtain estimations for the number of spontaneous emissions by measuring stimulated emission in a cavity mode in the driven Jaynes-Cummings model, using quantum trajectory theory.
-\subsection{Probability distributions of emissions}
-In order to get the desired estimations, first we must obtain probability distributions that relate the number of spontaneous emissions of the atom with the emissions measured from the cavity. We achieve this by making a large number of quantum  trajectories from which we keep a record of the number of spontaneous emissions and cavity losses, relating the number of spontaneous emissions for each number of cavity loss and making a probability distribution out of the emission's register of the trajectories. 
-
-In order to achieve this, following the procedure from quantum trajectory theory as it is explained in \cite{bla}. Starting with a state which represents a ground state of the atom with no photons in the cavity, $\ket{\phi(t = 0)} = \ket{\downarrow} \times \ket{0}$, we evolve it with the Schrödinger equation through some time $\delta t$, using a non-hermitian Hamiltonian of the form
+We now summarize te quantum trajectory formalism \cite{bla} that we
+use to solve the system. We start with a state which represents a
+ground state of the atom with no photons in the cavity,
+$\ket{\phi(t = 0)} = \ket{\downarrow} \times \ket{0}$, we evolve it
+with the Schrödinger equation through some time $\delta t$, using the
+non-hermitian Hamiltonian
 \begin{equation}
-H = H_s - \frac{i\hbar}{2}\sum_n C^\dagger_n C_n,
+H = H_s +H_{nh}\, .
 \end{equation}
-where the operators $C_n$ are known as collapse operators.
-Using a non-hermitian Hamiltonian will have as a consequence that the probability won't be conserved \cite{Sakurai:1167961}. The evolution of the state through the schrödinger equation will be interrupted by a quantum jump – an abrupt change on our state in which a photoemission has ocurred. The probability for such quantum jump to happen will be given by the collapse probability
+Using a non-hermitian Hamiltonian will have as a consequence that the
+probability won't be conserved \cite{Sakurai:1167961}. The evolution
+of the state through the schrödinger equation will be interrupted by a
+quantum jump – an abrupt change on our state in which a photoemission
+has ocurred. The probability for such quantum jump to happen will be
+given by the collapse probability
 \begin{equation} \label{probcol}
 \delta p = \sum_n \delta p_n,
 \end{equation}
 where 
-\begin{equation} \label{relprob}
-\delta p_n = \delta t \bra{\phi (t)} C^\dagger_n C_n \ket{\psi (t)}.
-\end{equation}
-We use these collapse probabilities to simulate the quantum trajectories, where we compare the collapse probability of eq. \eqref{probcol} with a random number $\epsilon$, uniformly distributed between zero and one. In the case the condition $\delta p > \epsilon$ is fulfilled we simulate that a quantum jump has happened, by acting with one of the collapse operators. The operator with which we'll act on the state will be given according to the relative probabilities of eq. \eqref{relprob}. From the non-hermitian Hamiltonian of our system \eqref{nh} we are able to identify the corresponding collapse operators which are
+\begin{eqnarray} \label{relprob}
+\delta p_1 &=& \gamma \bra{\phi (t)} \sigma_+
+               \sigma_-\ket{\psi (t)}\delta t \\
+  \delta p_2 &=& 2\kappa \bra{\phi (t)} a^\dagger a\ket{\psi (t)}\delta t 
+\end{eqnarray}
+We use these collapse probabilities to simulate the quantum
+trajectories, where we compare the collapse probability of eq.
+\eqref{probcol} with a random number $\epsilon$, uniformly distributed
+between zero and one. In the case the condition $\delta p > \epsilon$
+is fulfilled we simulate that a quantum jump has happened, by acting
+with one of the collapse operators. The operator with which we'll act
+on the state will be given according to the relative probabilities of
+eq. \eqref{relprob}.
 \begin{figure}[!t] 
 \centering
 \includegraphics[scale = 0.5]{distributioneng.pdf}
 \caption{\small{Probability distribution of spontaneous emissions for different number of cavity losses in a driven Jaynes-cummings model, doing $100,000$ quantum trajectory simulations, with parameters $\mathcal{E}  = \kappa = \gamma = g = 1$.}} \label{probdiss}
 \end{figure}
-\begin{subequations}
-\begin{equation}
-C_1 = \sqrt{\gamma}\sigma_-,
-\end{equation}
-\begin{equation}
-C_2 = \sqrt{2\kappa}a.
-\end{equation}
-\end{subequations}
-Using equation \eqref{probcol} one can easily identify the corresponding collapse probabilities of the system. Having identified the collapse operators and the collapse probability, we simulate quantum trajectories, in which we keep count of the number of quantum jumps for each collapse operator, relating the number of quantum jumps associated to spontaneous emissions for each number of quantum jumps associated to cavity emissions until we reach a maximum number of cavity emissions, which we establish. The procedure of register of emissions is summarized in algorithm \ref{alg1}. 
+Using equation \eqref{probcol} one can easily identify the
+corresponding collapse probabilities of the system. Having identified
+the collapse operators and the collapse probability, we simulate
+quantum trajectories, in which we keep count of the number of quantum
+jumps for each collapse operator, relating the number of quantum jumps
+associated to spontaneous emissions for each number of quantum jumps
+associated to cavity emissions until we reach a maximum number of
+cavity emissions, which we establish. The procedure of register of
+emissions is summarized in algorithm \ref{alg1}.
 
-Realizing a large number of these trajectories, storing the registers in a matrix, where we keep track of the number of times that there were certain number of spontaneous emissions for each different number of cavity emission, enable us to obtain probability distributions that relate these two quantities.  
+Realizing a large number of these trajectories, storing the registers
+in a matrix, where we keep track of the number of times that there
+were certain number of spontaneous emissions for each different number
+of cavity emission, enable us to obtain probability distributions that
+relate these two quantities.
+
+
+
+\section{Counting photons emitted in different channels}\label{sc:distributions}
+In this section we use the quantum trajectory formalism to calculate
+the distribution probability of the number of spontaneous emissions by
+the atom conditioned to the number of photons that leaked the cavity
+from its mirror .
+\subsection{Probability distributions of emissions}
 
 In Fig.\ref{probdiss} we see the probability of obtaining different number of spontaneous emissions for different number of cavity emissions. It is clear from the plot that our probability distributions are going to be more spread out as more time (and hence more cavity emissions) pass.
 
@@ -268,7 +390,7 @@ Considering $\gamma \gg g$, it is possible to clear $|\expval{a}|^2$, which allo
 Having Eq. \eqref{numfo} we are able to stablish a dynamic in the system in which we fix the number of photons. Fixing the photon number to one and leaving $\mathcal{E}$ as a free parameter, we obtain probability distributions of the number of spontaneous emissions $E_i$ for different mean number of spontaneous emissions just as we see in Fig. \ref{probdisult} (a). From these probability distributions we can calculate the variance and graph it against the mean value as we see in Fig. \ref{probdisult} (b), where we obtain a variance almost equal to the mean value, something which is characteristic of Poisson distributions. 
 Finally we can graph the mean value of spontaneous emissions against the number of cavity emissions considering standard deviation in order to have a better grasp of the certainty in the estimations, something that is shown in Fig. \ref{graph}.
 
-\section{Correlation between atom and cavity emissions}
+\section{Correlation between photons emitted in different channels}\label{sc:correlation}
 So far we have obtained estimations for the number of spontaneous emission for each measured number of cavity emissions. From our results it is obvious how the number of spontaneous emissions will increase with respect to the number of cavity emissions, given that more time will pass and more emissions will occur. One can also see how increasing the cavity linewidth $\kappa$ and keeping the other parameters constant will translate into a decrease of spontaneous emissions with respect to the number of cavity emissions. However, one question remains: is there a direct correlation between these two quantities? If yes, how this varies with respect to the cavity linewidth. From the beginning one could expect that in the case for a big $\kappa$ there would be no correlation at all, since this situation will be equivalent to the situation where there is no cavity. 
 
 In order to have a measure of the correlation of the emissions we introduce the Pearson Correlation Coefficient \cite{benesty2009pearson}
@@ -303,13 +425,13 @@ we also see an increment of the correlation.
 
 In Fig. \ref{errorzz} we can appreciate that, as we increase the total temporal interval, there is also a slight increase in the correlation. This supports the idea that the time that takes for the system in stablishing the number photons will affect the value for the correlation, for values of $\kappa/\gamma$ lower than $0.1$.
 
-\section{Conclusions}
+\section{Conclusions}\label{sc:conclusions}
 In this work we considered a driven Jaynes-Cummings system. We made a program in which, through the use of quantum trajectory theory, we were able to obtain probability distributions that relate the number of spontaneous emissions given certain number of cavity emissions. Through the probability distributions we obtained estimations for the number of spontaneous emissions by measuring cavity emissions, considering the correspondent error. Finally we study the existing correlation where we saw how this correlation decreases as we increase the cavity linewidth. However, if we try with values for  $\kappa/\gamma < 0.1$, there comes a point where the increase stops and we see a decrease. We believe this is related to the fact that if we use enough small values of $\kappa$ there will come a point where the emission of photons will be too low and this will imply a decrease in the correlation. The results in this work provide a tool that could be useful in the manipulation of single photons product of spontaneous emission, and provide insight into the physical behavior of the driven Jaynes-Cummings model.
 
 
 \section*{Acknowledgment}
 
-Support by UNAM, projects CONACyT and UNAMPAPIIT IG100518.
+Support by UNAM, projects CONACyT and UNAM PAPIIT IG100518.
 
 
 \bibliographystyle{IEEEtran}
