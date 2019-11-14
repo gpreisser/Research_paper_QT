@@ -199,7 +199,7 @@ raising operators, respectively, and the operator $\sigma_z$ accounts
 for the population difference between the atomic levels. These
 operators obey
 $[\sigma_+, \sigma_-] = \sigma_z, \ [\sigma_\pm, \sigma_z] = \mp
-2\sigma_\pm$. The strength of the coupling between atom and cacity
+2\sigma_\pm$. The strength of the coupling between atom and cavity
 field is given by the constant
 \begin{equation}
 g = \sqrt{\frac{\omega d^2}{2\hbar \epsilon_0 V_Q}},
@@ -217,7 +217,7 @@ where the terms corresponding to spontaneous emission of the atom and cavity los
 H_{dec} = - i\hbar\frac{\gamma}{2}\sigma_+\sigma_-,
 \end{equation}
 \begin{equation}
-H_{leak} = - i\hbar\kappa a^\dagger a\, .
+H_{leak} = - i\hbar\kappa a^\dagger a\, ,
 \end{equation}
 \end{subequations}
 where $\kappa$ and $\gamma$ are the cavity loss and spontaneous decay
@@ -226,69 +226,148 @@ evolution is interrumped by spontaneus emission by the atom or when a
 photon leaks the cavity. 
 
 We now summarize te quantum trajectory formalism \cite{bla} that we
-use to solve the system. We start with a state which represents a
-ground state of the atom with no photons in the cavity,
+use to solve the system. Each quantum trajectory is simulated as
+folllows. We start with a state which represents a ground state of the
+atom with no photons in the cavity,
 $\ket{\phi(t = 0)} = \ket{\downarrow} \times \ket{0}$, we evolve it
 with the Schrödinger equation through some time $\delta t$, using the
 non-hermitian Hamiltonian
 \begin{equation}
 H = H_s +H_{nh}\, .
 \end{equation}
-Using a non-hermitian Hamiltonian will have as a consequence that the
-probability won't be conserved \cite{Sakurai:1167961}. The evolution
-of the state through the schrödinger equation will be interrupted by a
-quantum jump – an abrupt change on our state in which a photoemission
-has ocurred. The probability for such quantum jump to happen will be
-given by the collapse probability
+The evolution of the state through the schrödinger equation will be
+interrupted by a quantum jump – an abrupt change on our state in which
+a photoemission has ocurred. The probability for such quantum jump to
+happen, during the time step $\delta t$, is given by the collapse
+probability
 \begin{equation} \label{probcol}
 \delta p = \sum_n \delta p_n,
 \end{equation}
-where 
-\begin{eqnarray} \label{relprob}
-\delta p_1 &=& \gamma \bra{\phi (t)} \sigma_+
-               \sigma_-\ket{\psi (t)}\delta t \\
-  \delta p_2 &=& 2\kappa \bra{\phi (t)} a^\dagger a\ket{\psi (t)}\delta t 
-\end{eqnarray}
-We use these collapse probabilities to simulate the quantum
-trajectories, where we compare the collapse probability of eq.
-\eqref{probcol} with a random number $\epsilon$, uniformly distributed
-between zero and one. In the case the condition $\delta p > \epsilon$
-is fulfilled we simulate that a quantum jump has happened, by acting
-with one of the collapse operators. The operator with which we'll act
-on the state will be given according to the relative probabilities of
-eq. \eqref{relprob}.
+where
+
+\begin{subequations}\label{relprob}
+  \begin{eqnarray}  \delta p_1 &=& \gamma \bra{\phi
+      (t)} \sigma_+
+                                                  \sigma_-\ket{\psi (t)}\delta t\, , \\
+    \delta p_2 &=& 2\kappa \bra{\phi (t)} a^\dagger a\ket{\psi
+                   (t)}\delta t \, .
+  \end{eqnarray}
+\end{subequations}
+We compare the collapse probability of Eq.~\eqref{probcol} with a
+random number $\epsilon$, uniformly distributed between zero and one.
+In the case the condition $\delta p > \epsilon$ is fulfilled we
+simulate that a quantum jump has happened, by acting with one of the
+collapse operators $a$ or $\sigma_-$ and renormalizating the obtained
+state. The operator that will act on the state will be given according
+to the relative probabilities of Eqs.~\eqref{relprob}.
 \begin{figure}[!t] 
 \centering
 \includegraphics[scale = 0.5]{distributioneng.pdf}
 \caption{\small{Probability distribution of spontaneous emissions for different number of cavity losses in a driven Jaynes-cummings model, doing $100,000$ quantum trajectory simulations, with parameters $\mathcal{E}  = \kappa = \gamma = g = 1$.}} \label{probdiss}
 \end{figure}
-Using equation \eqref{probcol} one can easily identify the
-corresponding collapse probabilities of the system. Having identified
-the collapse operators and the collapse probability, we simulate
-quantum trajectories, in which we keep count of the number of quantum
-jumps for each collapse operator, relating the number of quantum jumps
-associated to spontaneous emissions for each number of quantum jumps
-associated to cavity emissions until we reach a maximum number of
-cavity emissions, which we establish. The procedure of register of
-emissions is summarized in algorithm \ref{alg1}.
+If $\delta p > \epsilon$ is not fulfilled we just renormalize the
+state, because using a non-hermitian Hamiltonian will have as a
+consequence that the probability won't be conserved
+\cite{Sakurai:1167961}. For the next step we repeat the procedure
+using the resulting state for this step. One quantum trajectory of
+total time $t$ is obtained after repeating the previous procedure
+$t/\delta t$ steps. For each trajectory we count the number of quantum
+jumps, the jumps correponding to operator $a$ reduces the number of
+photons inside the cavity and corresponds to a photon that leak the
+cavity. The jumps corresponding to operator $\sigma_-$ interrumps its
+unitary evolution and send it back to the ground state, it corresponds
+to a spontaneous emission. The procedure to register emissions in the
+two different channels is summarized in algorithm \ref{alg1}.
 
-Realizing a large number of these trajectories, storing the registers
-in a matrix, where we keep track of the number of times that there
-were certain number of spontaneous emissions for each different number
-of cavity emission, enable us to obtain probability distributions that
-relate these two quantities.
+We realize a large number of these trajectories and keep track of the
+numbers of emission for each channel, with this data we can calculate
+probability distributions that relate these two quantities.
 
 
 
 \section{Counting photons emitted in different channels}\label{sc:distributions}
-In this section we use the quantum trajectory formalism to calculate
-the distribution probability of the number of spontaneous emissions by
-the atom conditioned to the number of photons that leaked the cavity
-from its mirror .
-\subsection{Probability distributions of emissions}
+In this section we calculate the probability distribution of the
+number of spontaneous emissions, $n_s$, under different conditions.
+First we calculate the distribution probability of $n_s$ when we know
+the number of leaked photons from the cavity, $n_c$; we use
+$p(n_s|n_c)$ to denote the distribution. Using this function we can
+investigate the correlation between $n_s$ and $n_c$ as a function of
+the cavity decay rate. This correlation is a measure of how much
+information we can obtain about $n_s$ if we know $n_c$.
 
-In Fig.\ref{probdiss} we see the probability of obtaining different number of spontaneous emissions for different number of cavity emissions. It is clear from the plot that our probability distributions are going to be more spread out as more time (and hence more cavity emissions) pass.
+The number of total photon emissions depends on how fast the atom is
+excited. In order to do a meaningful comparison when we change
+$\kappa$, we adjust the cavity drive so the mean number of photons
+inside the cavity is the same. If we keep $g$ constant this guarantees
+that the rate of atomic excitation is the same for different $\kappa$.
 
+In order to find the value of the cavity drive $\mathcal{E}$ as a
+function of the mean value of photons inside the cavity, we solve the
+Maxwell-Bloch equations. These equations give the dynamic of our
+system for the variables $\expval{a}, \expval{\sigma_-}$ and
+$\expval{\sigma_z}$ that correspond to the cavity field, atomic
+coherence, and atomic inversion respectively \cite{Alsing_1991}. For
+the case of the driven Jaynes-Cummings system, these equations are
+\begin{subequations} \label{maxbloch}
+\begin{equation} \label{bloch1}
+\dot{z} = (g/2)v + \mathcal{E} - \kappa z,
+\end{equation}
+\begin{equation} \label{bloch2}
+\dot{v} = gmz - (\gamma/2)v,
+\end{equation}
+\begin{equation} \label{bloch3}
+\dot{m} = -2g(z^*v + v^*z) - \gamma(m + 2),
+\end{equation}
+\end{subequations} 
+where we defined $z = e^{i\omega t}\expval{a}$,
+$v = 2e^{i\omega t}\expval{\sigma_-}$ and $m = 2\expval{\sigma_z}$.
+When the system is stable, we obtain, from
+\eqref{maxbloch}, the steady state
+solutions \cite{gagniuc2017markov}
+\begin{equation} \label{chaf1}
+\expval{a}_{ss} = \frac{\mathcal{E}e^{-i\omega t} +
+  g\expval{\sigma_-}_{ss}}{\kappa}\, ,
+\end{equation}
+\begin{equation} \label{chaf2}
+\expval{\sigma_-}_{ss} = -\frac{2g}{\gamma}\frac{\expval{a}_{ss}}{1 +
+  \frac{8g^2}{\gamma^2}|\expval{a}_{ss}|^2}\, ,
+\end{equation}
+\begin{equation}
+\bigg(\frac{\mathcal{E}}{\kappa}\bigg)^2 = |\expval{a}_{ss}|^2 \bigg(1
++ \frac{2g^2}{\gamma \kappa}\frac{1}{1 +
+  \frac{8g^2}{\gamma^2}|\expval{a}_{ss}|^2}\bigg)^2\, .
+\end{equation}
+When $\gamma \gg g$, the expected value of the number of photons in
+the cavity is 
+\begin{equation} \label{numfo}
+|\expval{a}_{ss}|^2 \approx \bigg(\frac{\mathcal{E}/\kappa}{1 + 2g^2/\gamma \kappa}\bigg)^2.
+\end{equation}
+
+\paragraph{The case when the number of photons leaked from the cavity  is known}
+\fxnote{No esta claro que hiciste aqui. Segun yo corriste el programa
+  distinto tiempo para cada caso}
+We calculate the distribution probability of the number of spontaneous
+emission conditioned to the number of photons detected leaking the
+cavity. We assume that the mean flux of photons in each channel is
+known in advance (they can be calculated knowing the cavity drive).
+The results are shown in Fig.\ref{probdiss}. As the number of leaked
+photons increases, the mean number of spontaneous emissions increases.
+This result is expected, because the number of leaked photons is
+correlated with the time we are counting spontaneus emission photons
+from a driven atom: the larger the number of leaked photons the larger
+the time we measure spontaneous emitted photons which implies a larger
+mean number of emitted photons. Also, the probability distribution is
+wider when the number of leaked photons increases, this implies less
+accuracy guessing the number of spontaneus emission as the number of
+leaked photons increases. If we know the cavity drive, this results
+does not imply that we can learn something extra about the number of
+spontaneous emissions knowing the number of photons leaked from the
+cavity; it is clear that when we increase the time window where we
+count photons, both, the number of leaked photons and the number of
+spontaneous emissions, increases.
+
+In section~\ref{sc:correlation} we will show
+when there is correlation between emissions in the two channels.
 
 \begin{algorithm}[!t]
 \caption{Pseudocode for register of cavity losses and atom's spontaneous emissions}
@@ -349,38 +428,16 @@ In Fig.\ref{probdiss} we see the probability of obtaining different number of sp
 \end{center}
 \end{figure*}
 \end{center}
-\subsection{Extracting data from the probability distributions}
-Due to the complex dynamic of the driven Jaynes-Cummings system \cite{Carmichael1993Open}, it is important to know the dynamic that the system undergoes at the moment of obtaining the probability distributions, in order to have a better physical understanding of our results. In this case we opt for fixing the number of photons in the cavity.
+\paragraph{The case where the time we measure photons is fixed}
 
+We know fix the time we measure photons, which is equivalente to
+fixing the mean number of spontaneous emited photons or the mean number
+of leaked photons from the cavity. 
 
-We do this by solving what is known as the Maxwell-Bloch equations, which give the dynamic of our system for the variables  $\expval{a}, \expval{\sigma_-}$ and $\expval{\sigma_z}$ that correspond to the cavity field, atomic coherence, and atomic inversion respectively \cite{Alsing_1991}. For the case of the driven Jaynes-Cummings system, these equations are given by
-\begin{subequations} \label{maxbloch}
-\begin{equation} \label{bloch1}
-\dot{z} = (g/2)v + \mathcal{E} - \kappa z,
-\end{equation}
-\begin{equation} \label{bloch2}
-\dot{v} = gmz - (\gamma/2)v,
-\end{equation}
-\begin{equation} \label{bloch3}
-\dot{m} = -2g(z^*v + v^*z) - \gamma(m + 2),
-\end{equation}
-\end{subequations} 
-where we defined  $z = e^{i\omega t}\expval{a}$, $v = 2e^{i\omega t}\expval{\sigma_-}$ and $m = 2\expval{\sigma_z}$. Solving for the case in which our variables are constant we can obtain steady state solutions \cite{gagniuc2017markov}.  From \eqref{bloch1} one can obtain the equation
-\begin{equation} \label{chaf1}
-\expval{a}_{ss} = \frac{\mathcal{E}e^{-i\omega t} + g\expval{\sigma_-}_{ss}}{\kappa}.
-\end{equation}
-While from \eqref{bloch2} and \eqref{bloch3} one obtains
-\begin{equation} \label{chaf2}
-\expval{\sigma_-}_{ss} = -\frac{2g}{\gamma}\frac{\expval{a}_{ss}}{1 + \frac{8g^2}{\gamma^2}|\expval{a}_{ss}|^2}.
-\end{equation}
-The requirement that both \eqref{chaf1} and \eqref{chaf2} are valid gives as result
-\begin{equation}
-\bigg(\frac{\mathcal{E}}{\kappa}\bigg)^2 = |\expval{a}_{ss}|^2 \bigg(1 + \frac{2g^2}{\gamma \kappa}\frac{1}{1 + \frac{8g^2}{\gamma^2}|\expval{a}_{ss}|^2}\bigg)^2.
-\end{equation}
-Considering $\gamma \gg g$, it is possible to clear $|\expval{a}|^2$, which allow us to obtain an expression for the expected value of the number of photons in the cavity
-\begin{equation} \label{numfo}
-|\expval{a}_{ss}|^2 = \bigg(\frac{\mathcal{E}/\kappa}{1 + 2g^2/\gamma \kappa}\bigg)^2.
-\end{equation}
+We focus in the case where we fix the mean number of photons inside
+the cavity. This number depends on the cavity drive and the atomic
+parameters.
+
 \begin{figure}[!t]  
 \centering
 \includegraphics[scale = 0.45]{newsigmaeng.pdf}
@@ -391,14 +448,23 @@ Having Eq. \eqref{numfo} we are able to stablish a dynamic in the system in whic
 Finally we can graph the mean value of spontaneous emissions against the number of cavity emissions considering standard deviation in order to have a better grasp of the certainty in the estimations, something that is shown in Fig. \ref{graph}.
 
 \section{Correlation between photons emitted in different channels}\label{sc:correlation}
-So far we have obtained estimations for the number of spontaneous emission for each measured number of cavity emissions. From our results it is obvious how the number of spontaneous emissions will increase with respect to the number of cavity emissions, given that more time will pass and more emissions will occur. One can also see how increasing the cavity linewidth $\kappa$ and keeping the other parameters constant will translate into a decrease of spontaneous emissions with respect to the number of cavity emissions. However, one question remains: is there a direct correlation between these two quantities? If yes, how this varies with respect to the cavity linewidth. From the beginning one could expect that in the case for a big $\kappa$ there would be no correlation at all, since this situation will be equivalent to the situation where there is no cavity. 
+In this section we study the correlation between the number of
+spontaneus emission from the atom, $n_s$, and the number of photons
+that leak the cavity, $n_c$, as a function of the cavity decay rate,
+$\kappa$. We expect that when $\kappa\rightarrow\infty$ there would be
+no correlation between these two random variables, since this
+situation will be equivalent to the situation where there is no
+cavity.
 
-In order to have a measure of the correlation of the emissions we introduce the Pearson Correlation Coefficient \cite{benesty2009pearson}
+In order to have a measure of the correlation between emissions in the
+two different channels, we use the Pearson Correlation Coefficient
+\cite{benesty2009pearson}
 \begin{equation} 
-r_{xy} = \frac{\sum\limits_{i=1}^n(x_i - \bar{x})(y_i - \bar{y})}{\sqrt{\sum\limits_{i=1}^n(x_i - \bar{x})^2\sum\limits_{i=1}^n(y_i - \bar{y})^2}}.  \label{correlationc}
+r_{n_s,n_c} = \frac{\sum\limits_{i=1}^n(n_s^{(i)} -
+  \bar{n}_s)(n_c^{(i)} - \bar{n}_c)}{\sqrt{\sum\limits_{i=1}^n(n_s^{(i)}
+    - \bar{n}_s)^2\sum\limits_{i=1}^n(n_c^{(i)} - \bar{n}_c)^2}}\, ,  \label{correlationc}
 \end{equation}
-Having an equation that gives us a measure of the correlation, now we want the necessary data in order to obtain information about the correlation between the two types of emissions that we deal with. We can obtain this data by defining a temporal interval from which we make a register of the final number of spontaneous and cavity emissions. Given that what we are doing are essentially stochastic calculations, there will be variations in the final number of emissions for each trajectory. Making a large number of trajectories keeping track of the final number of emissions and pluggin the data in \eqref{correlationc} we are able to calculate the correlation.
-
+where $n^{(i)}$ is the output $i$ of the random variable $n$.
 
 \begin{center}
 \begin{figure}[t!]
@@ -418,15 +484,54 @@ Having an equation that gives us a measure of the correlation, now we want the n
 \end{figure}
 \end{center}
 %kncrease or increases
-From Fig. \ref{corrxy} we see that, as we expected, the correlation goes to zero as we increase the cavity linewidth. Nonetheless, perhaps a more interesting question is: how high can this correlation be? Trying with values for $\kappa/\gamma$ lower than $0.1$, we notice that the correlation's increase stops and a decrease begins. It is possible that this stop in the increase of the correlation is due to the fact that if we keep decreasing the cavity linewidth it will come a point where the number of emissions will decrease considerably, diminishing the correlation. If this is the case we should expect that as we increase the temporal intervals, %the cavity linewidth at which the correlation starts decreasing should be smaller.
-we also see an increment of the correlation.
+
+The results are shown in Fig. \ref{corrxy}. We see a maximum
+correlation close to $0.1$ for $\kappa/\gamma\approx 0.05$ that
+decreases as $\kappa$ increases. From the figure it looks like the
+correlation goes to zero as $\kappa\rightarrow\infty$. With values for
+$\kappa/\gamma$ lower than $0.05$, we notice that the correlations
+increase stops and a decrease begins. This stop in the increase of the
+correlation is due to the fact that, as we keep decreasing the cavity
+linewidth the number of photons that leaks the cavity decreases
+considerably. In the limit where $\kappa=0$ the two random
+variables becomes independent, because the output of $n_c$ is zero
+with probability one. In this case there is no correlation between the two
+random variables.
+
+In Fig. \ref{errorzz} it is shown that as we increase the temporal
+interval where we count photons, we also see a small increment of the
+correlation, due to the fact that more photons leaks the cavity
+giving information about the system.
+\fxnote{Hay que mejorar las graficas. Las variables tienen que ser
+  mayores y las unidades estan mal}
 
 %In Fig. \ref{errorzz} we can appreciate that, as we increase the total temporal interval, the cavity linewidth at which the correlation starts decreasing is smaller. This supports the idea that the time that takes for the system in stablishing the number photons will affect the minimum value of cavity linewidth at which the correlation starts decreasing.
 
-In Fig. \ref{errorzz} we can appreciate that, as we increase the total temporal interval, there is also a slight increase in the correlation. This supports the idea that the time that takes for the system in stablishing the number photons will affect the value for the correlation, for values of $\kappa/\gamma$ lower than $0.1$.
 
 \section{Conclusions}\label{sc:conclusions}
-In this work we considered a driven Jaynes-Cummings system. We made a program in which, through the use of quantum trajectory theory, we were able to obtain probability distributions that relate the number of spontaneous emissions given certain number of cavity emissions. Through the probability distributions we obtained estimations for the number of spontaneous emissions by measuring cavity emissions, considering the correspondent error. Finally we study the existing correlation where we saw how this correlation decreases as we increase the cavity linewidth. However, if we try with values for  $\kappa/\gamma < 0.1$, there comes a point where the increase stops and we see a decrease. We believe this is related to the fact that if we use enough small values of $\kappa$ there will come a point where the emission of photons will be too low and this will imply a decrease in the correlation. The results in this work provide a tool that could be useful in the manipulation of single photons product of spontaneous emission, and provide insight into the physical behavior of the driven Jaynes-Cummings model.
+Differently to the case of an atom in free space, we can learn
+something about the number of spontaneus emissions done by an atom
+into different electromagnetic modes if the atom is inside a leaky
+cavity. 
+
+
+In this work we considered a driven Jaynes-Cummings system. We made a
+program in which, through the use of quantum trajectory theory, we
+were able to obtain probability distributions that relate the number
+of spontaneous emissions given certain number of cavity emissions.
+Through the probability distributions we obtained estimations for the
+number of spontaneous emissions by measuring cavity emissions,
+considering the correspondent error. Finally we study the existing
+correlation where we saw how this correlation decreases as we increase
+the cavity linewidth. However, if we try with values for
+$\kappa/\gamma < 0.1$, there comes a point where the increase stops
+and we see a decrease. We believe this is related to the fact that if
+we use enough small values of $\kappa$ there will come a point where
+the emission of photons will be too low and this will imply a decrease
+in the correlation. The results in this work provide a tool that could
+be useful in the manipulation of single photons product of spontaneous
+emission, and provide insight into the physical behavior of the driven
+Jaynes-Cummings model.
 
 
 \section*{Acknowledgment}
