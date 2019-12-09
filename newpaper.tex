@@ -533,10 +533,10 @@ where $n^{(i)}$ is the output $i$ of the random variable $n$.
 %\end{center}
 
 \begin{center}
-\begin{figure*}[!t]\label{error2}
+\begin{figure*}[!t]
 \begin{center}
-\includegraphics[scale = 0.7]{lastgraph.pdf}
-\caption{\small{Mean value of spontaneous emissions after post-selection, fixing $\expval{n} \approx 1$, $\gamma =$ 1.0, $g = $ 0.1, and with  $\mathcal{E} =  \kappa |\langle n \rangle|[1 + 2g^2/\gamma \kappa]$ and with tf = 500. (a) We consider $\kappa = $0.1 which has a correlation value around $0.1$; (b) we consider $\kappa = $1.0, which has a correlation value around $0.01$.}} \label{probdisult}
+\includegraphics[scale = 0.7]{lastgraph1.pdf}
+\caption{\small{Mean value of spontaneous emissions after post-selection, fixing $\expval{n} \approx 1$, $\gamma =$ 1.0, $g = $ 0.1, and with  $\mathcal{E} =  \kappa |\langle n \rangle|[1 + 2g^2/\gamma \kappa]$ and with tf = 500. (a) We consider $\kappa = $0.05 which has a correlation value around $0.1$; (b) we consider $\kappa = $1.0, which has a correlation value around $0.01$.}} \label{probdisult}
 \end{center}
 \end{figure*}
 \end{center}
@@ -565,8 +565,16 @@ giving information about the system.
   mayores y las unidades estan mal}
 
 %In Fig. \ref{errorzz} we can appreciate that, as we increase the total temporal interval, the cavity linewidth at which the correlation starts decreasing is smaller. This supports the idea that the time that takes for the system in stablishing the number photons will affect the minimum value of cavity linewidth at which the correlation starts decreasing.
-
-
+Studying this correlation further, we see how the average number of
+spontaneous emissions varies given the number of cavity emissions during a constant length of time. Making a 
+post-selection around the average number of cavity emissions we make a gaussian
+adjustment for the average number of spontaneous emissions and the corresponding 
+standard deviation. Such results are shown in Fig. \ref{probdisult}, where we notice that
+for the case in which we have a correlation around $0.1$, making a post-selection with a 
+bigger number of cavity emissions turns into an increase of the mean number of spontaneous emissions,
+ while the opposite happens for a lower number of cavity emissions. On the other hand, when 
+the correlation is around $0.01$, the change in the average number of spontaneous emissions
+after the post-selection is barely noticeable.
 
 \section{Conclusions}\label{sc:conclusions}
 Atomic emission in cavity and non-cavity modes of an atom inside a
