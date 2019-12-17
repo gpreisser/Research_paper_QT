@@ -172,11 +172,10 @@ variables. Concluding remarks are given in section
 \includegraphics[scale = 0.65]{newimagepaper.pdf}
 %\includegraphics[scale = 0.45]{image_paper222.png}
 \caption{A driven atom in free space (a) and inside a driven leaky
-  cavity (b). Each time the atom decays, it emits a photon. In each
-  case, we count the number of photons $m$ and $n$, emitted in two
-  different directions respectively. For the atom in free space there
-  is no correlation between $m$ and $n$. For the atom inside the leaky
-  cavity we find a correlation between $m$ and $n$.}
+  cavity (b). We count the number of photons $m$ and $n$, emitted by
+  the atom in two different directions. For the atom in free space
+  there is no correlation between $m$ and $n$. For the atom inside the
+  leaky cavity we find a correlation between $m$ and $n$.}
 \end{center}
 \end{figure*}
 \end{center}
@@ -338,7 +337,9 @@ to the relative probabilities of Eqs.~\eqref{relprob}.
 \begin{figure}[!t] 
 \centering
 \includegraphics[scale = 0.5]{distributioneng.pdf}
-\caption{\small{Probability distribution of spontaneous emissions for different number of cavity losses in a driven Jaynes-cummings model, doing $100,000$ quantum trajectory simulations, with parameters $\mathcal{E}  = \kappa = \gamma = g = 1$.}} \label{probdiss}
+\caption{Probability distribution of spontaneous emissions for
+  different number of cavity photons. Parameters $\mathcal{E}  =
+  \kappa = \gamma = g = 1$, $100,000$ quantum trajectories. } \label{probdiss}
 \end{figure}
 If $\delta p > \epsilon$ is not fulfilled we just renormalize the
 state, because using a non-hermitian Hamiltonian will have as a
@@ -360,13 +361,22 @@ probability distributions that relate these two quantities.
 
 \section{Counting photons emitted in different channels}\label{sc:distributions}
 In this section we calculate the probability distribution of the
-number of spontaneous emissions, $n_s$, under different conditions.
-First we calculate the distribution probability of $n_s$ when we know
-the number of leaked photons from the cavity, $n_c$; we use
-$p(n_s|n_c)$ to denote the distribution. Using this function we can
-investigate the correlation between $n_s$ and $n_c$ as a function of
-the cavity decay rate. This correlation is a measure of how much
-information we can obtain about $n_s$ if we know $n_c$.
+number of spontaneous emissions $n_s$, under two different conditions.
+First, we study the distribution probability of $n_s$ when we consider
+the set of quantum trajectories where the number of leaked photons
+from the cavity is $n_c$. This simulate the physical situation where
+we count the number of spontaneus photons until the moment where the
+number of leaked photons from the cavity is $n_c$. It is impossible to
+know in advance how long it takes to the cavity to leak $n_c$ photons,
+thus the time each quantum trajectory is evolved is not fixed. Second,
+we fix the time each quantum trajectory is evolved and count the
+number of spontaneus emissions $n_s$, and cavity emissions $n_c$. From
+the set of quantum trajectories evolved a fixed time, we calculate the
+joint probability $p(n_s,n_c)$, of finding $n_s$ spontaneous emissions
+and $n_c$ cavity emissions. Using $p(n_s,n_c)$ we calculate the
+correlations between the two random variables. This correlation is a
+measure of how much information we can obtain about $n_s$ if we know
+$n_c$.
 
 The number of total photon emissions depends on how fast the atom is
 excited. In order to do a meaningful comparison when we change
@@ -397,14 +407,8 @@ $v = 2e^{i\omega t}\expval{\sigma_-}$ and $m = 2\expval{\sigma_z}$.
 When the system is stable, we obtain, from
 \eqref{maxbloch}, the steady state
 solutions \cite{gagniuc2017markov}
-\begin{center}
-\begin{figure*}[!t]\label{error2}
-\begin{center}
-\includegraphics[scale = 0.7]{newerrorppp.pdf}
-\caption{\small{(a) Probability distributions for different mean number of spontaneous emissions $\mu$; (b) Calculation of variance with respect to the mean number of sponatenous emissions $\mu$. In both cases we consider $\expval{n} \approx 1$, $\gamma = 1.0$ , $\kappa = g = 0.1$ and $\mathcal{E} =  \kappa |\langle n \rangle|[1 + 2g^2/\gamma \kappa]$.}} \label{probdisult}
-\end{center}
-\end{figure*}
-\end{center}
+
+
 \begin{equation} \label{chaf1}
 \expval{a}_{ss} = \frac{\mathcal{E}e^{-i\omega t} +
   g\expval{\sigma_-}_{ss}}{\kappa}\, ,
@@ -424,54 +428,95 @@ the cavity is
 |\expval{a}_{ss}|^2 \approx \bigg(\frac{\mathcal{E}/\kappa}{1 + 2g^2/\gamma \kappa}\bigg)^2.
 \end{equation}
 
-\paragraph{The case when the number of photons leaked from the cavity  is known}
-\fxnote{No esta claro que hiciste aqui. Segun yo corriste el programa
-  distinto tiempo para cada caso}
+
+\subsection{Quantum trajectories with fixed number of photons leaked from the cavity}
 We calculate the distribution probability of the number of spontaneous
-emission conditioned to the number of photons detected leaking the
-cavity. We assume that the mean flux of photons in each channel is
-known in advance (they can be calculated knowing the cavity drive).
-The results are shown in Fig.\ref{probdiss}. As the number of leaked
+emission when a fixed number of photons leaked the cavity. We assume
+that the mean number of photons inside the cavity is $1/9$. The
+results are shown in Fig.~\ref{probdiss}. As the number of leaked
 photons increases, the mean number of spontaneous emissions increases.
 This result is expected, because the number of leaked photons is
 correlated with the time we are counting spontaneus emission photons
 from a driven atom: the larger the number of leaked photons the larger
-the time we measure spontaneous emitted photons which implies a larger
-mean number of emitted photons. Also, the probability distribution is
-wider when the number of leaked photons increases, this implies less
-accuracy guessing the number of spontaneus emission as the number of
-leaked photons increases. If we know the cavity drive, this results
-does not imply that we can learn something extra about the number of
-spontaneous emissions knowing the number of photons leaked from the
-cavity; it is clear that when we increase the time window where we
-count photons, both, the number of leaked photons and the number of
-spontaneous emissions, increases.
+the time we measure spontaneous emitted photons, which implies a
+larger mean number of emitted photons. Also, as shown in
+Fig~\ref{graph}, the probability distribution is wider as the number
+of leaked photons increases, this implies less accuracy guessing the
+number of spontaneus emission. If we know the cavity drive, this
+results does not imply that we can learn something extra about the
+number of spontaneous emissions knowing the number of photons leaked
+from the cavity; it is clear that when we increase the time window
+where we count photons, both, the number of leaked photons and the
+number of spontaneous emissions, increases.
 
 In section~\ref{sc:correlation} we will show
 when there is correlation between emissions in the two channels.
 
-
-\begin{figure}[!b]  
+\begin{figure}[!h]  
 \centering
-\includegraphics[scale = 0.5]{newsigmaengg.pdf}
-\caption{\small{Average number of spontaneous emissions $\pm \sigma$ with respect to cavity emissions, under parameters $\expval{n} \approx 1$, $\gamma = 1$ , $\kappa = g = 0.1$ and $\mathcal{E} =  \kappa |\langle n \rangle|[1 + 2g^2/\gamma \kappa]$.}}
+\includegraphics[scale = 0.5]{newsigmaeng.pdf}
+\caption{Average number of spontaneous emissions $\pm \sigma$ with respect to cavity emissions, under parameters $\expval{n} \approx 1$, $\gamma = 1$ , $\kappa = g = 0.1$ and $\mathcal{E} =  \kappa |\langle n \rangle|[1 + 2g^2/\gamma \kappa]$.}
 \label{graph}
 \end{figure} 
 
 
-\paragraph{The case where the time we measure photons is fixed}
-
-We know fix the time we measure photons, which is equivalente to
-fixing the mean number of spontaneous emited photons or the mean number
-of leaked photons from the cavity. 
-
-We focus in the case where we fix the mean number of photons inside
-the cavity. This number depends on the cavity drive and the atomic
-parameters.
 
 
-Having Eq. \eqref{numfo} we are able to stablish a dynamic in the system in which we fix the number of photons. Fixing the photon number to one and leaving $\mathcal{E}$ as a free parameter, we obtain probability distributions of the number of spontaneous emissions $E_i$ for different mean number of spontaneous emissions just as we see in Fig. \ref{probdisult} (a). From these probability distributions we can calculate the variance and graph it against the mean value as we see in Fig. \ref{probdisult} (b), where we obtain a variance almost equal to the mean value, something which is characteristic of Poisson distributions. 
-Finally we can graph the mean value of spontaneous emissions against the number of cavity emissions considering standard deviation in order to have a better grasp of the certainty in the estimations, something that is shown in Fig. \ref{graph}.
+\subsection{Quantum trajectories with fixed duration}
+We consider the set of quantum trajectories of the same duration. This
+corresponds to fixing the time we measure photons. Each set of quantum
+trajectories with the same duration is labelled with its mean number
+of spontaneous emitted photons $\mu$. We consider the case where we
+fix the mean number of photons inside the cavity to $1$. As shown by
+Eq.~(\ref{numfo}), this number depends on the drive, and cavity and
+atomic parameters.
+
+In Fig.~\ref{error2}(a) the probability distribution of spontaneous
+emitted photons is shown for different mean values. As it is shown in
+Fig.~\ref{error2}(b), the width of the distribution increases linearly
+with the mean number of spontaneus emission. This behaviour does not
+imply any correlation between the number of spontaneus emissions and
+cavity emissions.
+
+Now we focus in the case, where given a set of quantum trajectories
+with fixed duration, we postselect all the trajectories where the
+number of cavity emissions is a fixed number $n_c$, and plot
+$p(n_s|n_c)$, the probability distribution of the number of spontaneus
+emissions $n_s$, under the condition that $n_c$ cavity emissions
+happened. If $p(n_s|n_c)\neq p(n_s)p(n_c)$, $n_s$ and $n_c$ are not
+independent: information can be extracted about $n_s$ knowing $n_c$.
+In Fig.~\ref{probdisult} (a) we show the probability distribution of
+$n_s$ for the case where $n_c$.
+
+
+
+In Fig.~\ref{probdisult} (b), where we obtain a variance almost equal
+to the mean value, something which is characteristic of Poisson
+distributions. 
+
+
+\begin{center}
+\begin{figure*}[!t]
+\includegraphics[scale = 0.7]{newerrorppp.pdf}
+\caption{(a) Probability distributions for different mean number of
+  spontaneous emissions $\mu$; (b) Calculation of variance with
+  respect to the mean number of sponatenous emissions $\mu$. In both
+  cases we consider $\expval{n} \approx 1$, $\gamma = 1.0$ ,
+  $\kappa = g = 0.1$ and
+  $\mathcal{E} = \kappa |\langle n \rangle|[1 + 2g^2/\gamma
+  \kappa]$.} \label{error2}
+\end{figure*}
+\end{center}
+
+
+\begin{center}
+\begin{figure*}
+\begin{center}
+\includegraphics[scale = 0.7]{lastgraph1.pdf}
+\caption{\small{Mean value of spontaneous emissions after post-selection, fixing $\expval{n} \approx 1$, $\gamma =$ 1.0, $g = $ 0.1, and with  $\mathcal{E} =  \kappa |\langle n \rangle|[1 + 2g^2/\gamma \kappa]$ and with tf = 500. (a) We consider $\kappa = $0.05 which has a correlation value around $0.1$; (b) we consider $\kappa = $1.0, which has a correlation value around $0.01$.}} \label{probdisult}
+\end{center}
+\end{figure*}
+\end{center}
 
 
 \section{Correlation between photons emitted in different channels}\label{sc:correlation}
@@ -521,14 +566,6 @@ where $n^{(i)}$ is the output $i$ of the random variable $n$.
 %\end{figure}
 %\end{center}
 
-\begin{center}
-\begin{figure*}[!t]
-\begin{center}
-\includegraphics[scale = 0.7]{lastgraph1.pdf}
-\caption{\small{Mean value of spontaneous emissions after post-selection, fixing $\expval{n} \approx 1$, $\gamma =$ 1.0, $g = $ 0.1, and with  $\mathcal{E} =  \kappa |\langle n \rangle|[1 + 2g^2/\gamma \kappa]$ and with tf = 500. (a) We consider $\kappa = $0.05 which has a correlation value around $0.1$; (b) we consider $\kappa = $1.0, which has a correlation value around $0.01$.}} \label{probdisult}
-\end{center}
-\end{figure*}
-\end{center}
 The results are shown in Fig. \ref{corrxy}. We see a maximum
 correlation close to $0.1$ for $\kappa/\gamma\approx 0.05$ that
 decreases as $\kappa$ increases. From the figure it looks like the
