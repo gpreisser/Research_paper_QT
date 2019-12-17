@@ -38,7 +38,7 @@
 %prstab,
 %prstper,
 %floatfix,
-]{revtex4-2}
+]{revtex4-1}
 
 \usepackage{hyperref}
 \hypersetup{
@@ -51,7 +51,7 @@
 \usepackage[ruled,vlined]{algorithm2e}
 
 \usepackage{physics}
-\usepackage{fixme}
+\usepackage[draft,inline,nomargin]{fixme} \fxsetup{theme=color}
 %\usepackage{algorithm}
 \usepackage{algorithmic}
 \usepackage{graphicx}% Include figure files
@@ -104,97 +104,86 @@ A two level atom in free space does not show any correlation between
 
 %\tableofcontents
 
-\section{INTRODUCTION}
+\section{Introduction}
 
 Spontaneous emission is a phenomenon that has been studied since the
 early XX century \cite{10.2307/94746, 1917PhyZ...18..121E}. One of the
-main characteristics of spontaneous emission is that
-\fxnote{spontaneus emission no es exponencial, es aproximadamente
-  exponencial, si quitas la aproximacion markoviana te queda una cola
-  polinomial, quite la oracion} the exact time of emission, as well as
-the direction in which the photon is emitted, is random, which
-difficults its measurement. On the other hand, photons emitted from a
-cavity are easy to measure, partly due the fact that we know that they
-leave the cavity through one of the lateral mirrors \cite{326305,
-  doi:10.1063/1.113345}. The randomness of the direction in which the
-photons are emitted by atoms in free space difficults photon counting
-experiments. To sort out this difficulty one could think of a physical
-arrangement, in which the two-level atom is coupled to the stimulated
-mode of a cavity, as it is shown in Fig. \ref{asa} (b). In this
-physical arrangement, \fxnote*{tienes una cita donde lo nombren
-  asi?}{which is known as the driven Jaynes-Cummings model}, one could
-try to estimate the number of spontaneous emissions of the atom
---which are emitted in modes that are not cavity modes and therefore
-escape the cavity-- by measuring the photons that leak through one of
-the cavity mirrors. In the case that a
-correlation exists between the two quantities, we can count the number
-of photons that leak the cavity through its mirror, which is easy to
-measure, to find information about the number of photons emitted into
-the other modes (spontaneus emission), which are difficult to measure.
+main characteristics of spontaneous emission is that the exact time of
+emission, as well as the direction in which the photon is emitted, is
+random, which difficults its measurement. On the other hand, photons
+emitted from a cavity mirror are easier to measure because we know
+their direction \cite{326305, doi:10.1063/1.113345}. The randomness of
+the direction in which the photons are emitted by atoms in free space
+difficults photon counting experiments. To sort out this difficulty
+one could think of a physical arrangement in which a two-level atom is
+coupled to a driven cavity, as it is shown in Fig. \ref{asa}. In this
+physical arrangement, one could try to estimate the number of
+spontaneous emissions of the atom --which are emitted in modes that
+are not cavity modes and therefore escape the cavity to its side-- by
+measuring the photons that leak through one of the cavity mirrors. In
+the case that a correlation exists between the two quantities, we can
+count the number of photons that leak the cavity through its mirror,
+which is easy to measure, to find information about the number of
+photons emitted into the other modes (spontaneus emission), which are
+difficult to measure.
 
 In the case of a two-level atom in free space, the absence of
-correlation between different channels is the result of the markovian
-approximation, which assumes that the environment has no memory of
-previous interactions with the system \cite{daley2014quantum}. Two
-atomic emissions would be correlated if one of the emissions stay
-registered in the environment and, somehow, influence the second
-emission of a two-level atom at a later time; the Markovian
-approximation does not allow memory effects and there is no
-correlation between the number of emissions of each source: knowing
-the number of photons emitted in some region of the space during some
-time does not give me any information on the number of photons emitted
-in other region of the space. Nevertheless, for the case of an atom
-inside a cavity, before a photon leaks the cavity, it will interact
-with the atom for some time. This interaction with the atom before the
-emission generates a correlation between photons that leak the cavity
-through its mirror and photons that leak the cavity through its side.
+correlation between photons emitted in different directions is due to
+the fact that the atom's environment memory of previous interactions
+with it, is very short; this is what justify the markovian
+approximation \cite{daley2014quantum}. Two atomic emissions would be
+correlated if one of the emissions stay registered in the environment
+and, somehow, influence the second emission.
 
-We use quantum trajectory theory to theoretically calculate the
-correlation between different emission channels. A quantum trajectory
-is the description of a continuously monitored quantum system
-conditioned on a particular past history of coherent evolution and
-collapse \cite{Carmichael1993Open}. These trajectories are simulated
-through a stochastic process, which define the times when the
-collapses occur. Each trajectory gives us the number of photon emitted
-in each channel. Simulating a large number of trajectories and
-registering the number of photon emissions into the two channels, we
-obtain its correlation. The correlation varies with the cavity
-linewidth and the atom-cavity coupling. For a very bad cavity we
-recover the free space result: there is no correlation between the two
-channels.
+For an atom in free space, knowing the number of photons emitted in
+some region of the space during some time does not give any
+information on the number of photons emitted in other region of the
+space. Nevertheless, for the case of an atom inside a cavity, before a
+photon, emitted from the atom into the cavity mode, leaks the cavity,
+it will interact with the atom for some time. This interaction creates
+a correlation between photons that leak the cavity through its mirror
+and photons that are emitted from the atom to the cavity side
+(spontaneus emissions).
+
+We use quantum trajectories theory to calculate the correlation between
+different emission channels. A quantum trajectory is the description
+of a continuously monitored quantum system conditioned on a particular
+past history of coherent evolution and collapse
+\cite{Carmichael1993Open}. These trajectories are simulated through a
+stochastic process, which define the times when the collapses occur.
+Each trajectory gives us the number of photon emitted in each channel.
+Simulating a large number of trajectories and registering the number
+of photon emissions into the two channels, we obtain its correlation.
+The correlation varies with the cavity linewidth and the atom-cavity
+coupling. For a very bad cavity we recover the free space result:
+there is no correlation between the two channels.
 
 
-This article is organized as follows: A general overview of the driven
-Jaynes-Cummings model is presented in section \ref{sc:drivenjc}. In
-section \ref{sc:distributions} we obtain probability distributions
-that relate the number of spontaneous and cavity emissions. In section
-\ref{sc:correlation} we calculate the correlation between the two variables.
-Concluding remarks are given in section \ref{sc:conclusions}
+This article is organized as follows: A general overview of the
+theoretical model is presented in section \ref{sc:drivenjc}. In
+section \ref{sc:distributions} we obtain join probability distribution
+of the the number of spontaneous and cavity emissions. In section
+\ref{sc:correlation} we calculate the correlation between the two
+variables. Concluding remarks are given in section
+\ref{sc:conclusions}
 \begin{center}
 \begin{figure*}\label{asa}
 \begin{center}
 \includegraphics[scale = 0.65]{newimagepaper.pdf}
 %\includegraphics[scale = 0.45]{image_paper222.png}
-\caption{\small{Physical arrangements of atom and atom in a cavity. In
-    both of these arrangements we consider a source which stimulates
-    the atom provoking it to spontaneously emit, once it decays. We
-    consider a detector in two directions, and we keep a register of
-    the number of photons measured in each direction. (a) In the case
-    for the atom we don't expect a correlation between m (the number
-    of photons measured in the upper side of the atom) and n (the
-    number of photons measured in the right side of the atom); (b) for
-    the atom in the cavity (a cavity with some loss rate) we study the
-    possibility that the cavity generates a correlation between the
-    emissions of the atom and the emissions of the cavity, which
-    correspond to the emissions that leak through mirror
-    2.}} 
+\caption{A driven atom in free space (a) and inside a driven leaky
+  cavity (b). Each time the atom decays, it emits a photon. In each
+  case, we count the number of photons $m$ and $n$, emitted in two
+  different directions respectively. For the atom in free space there
+  is no correlation between $m$ and $n$. For the atom inside the leaky
+  cavity we find a correlation between $m$ and $n$.}
 \end{center}
 \end{figure*}
 \end{center}
 
 
-\section{Driven Jaynes-Cummings model}\label{sc:drivenjc}
-e consider a system consisting of a two-level atom, coupled to a mode
+\section{Theoretical model}\label{sc:drivenjc}
+We consider a system consisting of a two-level atom, coupled to a mode
 of a leaky cavity. The mode is driven by a coherent field resonant
 with the atomic transition and the cavity mode.
 % In order to account for
