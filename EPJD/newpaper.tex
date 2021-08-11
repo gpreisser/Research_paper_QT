@@ -1,0 +1,559 @@
+\documentclass[epj,final]{svjour}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=blue,      
+    urlcolor=blue,
+    citecolor=blue,
+}
+\usepackage[ruled,vlined]{algorithm2e}
+
+\usepackage{physics}
+\usepackage{algorithmic}
+\usepackage{graphicx}% Include figure files
+\usepackage{dcolumn}% Align table columns on decimal point
+\usepackage{bm}% bold math
+\usepackage[square,numbers]{natbib}
+\bibliographystyle{unsrtnat}
+\begin{document}
+
+\title{Correlation between photons emitted in different channels from
+  an atom inside a leaky driven cavity}% Force line breaks with \\
+
+\author{Guillermo Preisser \and  Pablo Barberis-Blostein}
+ \mail{guillermo.preisser@uabc.edu.mx}
+
+%\offprints{}
+ \institute{Instituto de Investigaciones en Matem\'aticas Aplicadas y en
+   Sistemas, Universidad Nacional Aut\'onoma de M\'exico, Ciudad
+   Universitaria, 04510, CDMX, México.}
+
+
+
+\date{\today}
+             
+
+\abstract{
+  Photons emitted by a driven two level atom in free space do not show
+  correlation between different directions. We consider a two level
+  atom inside a driven leaky cavity. We consider two atomic emission
+  channels: emission to cavity modes and emission to no-cavity modes.
+  Using the quantum trajectory formalism we study the correlation
+  between photons emitted into cavity modes and that leak the cavity
+  through its mirror, with photons that are emitted into the other
+  modes. We find that the cavity generates a correlation between the
+  two emission channels.}
+
+
+\titlerunning{Correlations in an atom inside a leaky driven cavity}
+\maketitle
+
+%\tableofcontents
+
+\section{Introduction}
+
+Spontaneous emission has been studied since the early XX century
+\cite{10.2307/94746} \cite{1917PhyZ...18..121E}. One of its main
+characteristics is that the exact time of emission, as well as the
+direction in which the photon is emitted, is random, which difficults
+its measurement. On the other hand, photons that leak a cavity mirror
+are easier to measure because we know their direction
+\cite{326305} \cite{doi:10.1063/1.113345}. The randomness of the direction in
+which the photons are emitted by atoms in free space difficults photon
+counting experiments. To sort out this difficulty one could think of a
+physical arrangement in which a two-level atom is coupled to a driven
+cavity, as it is shown in Fig. \ref{asa}. In this physical
+arrangement, we have two emission channels: spontaneous emissions of
+the atom --photons that are emitted in modes that are not cavity modes
+and therefore escape the cavity to its side-- and cavity emissions
+--photons that leak through one of the cavity mirrors. In the case
+that a correlation exists between the two channels, we can count the
+number of photons that leak the cavity through its mirror, which is
+easy to measure, to find information about the number of photons
+emitted into the other modes (spontaneous emission), which are
+difficult to measure.
+
+In the case of a two-level atom in free space, the absence of
+correlation between photons emitted in different directions is due to
+the fact that the atom's environment memory of previous interactions
+with it, is very short; this is what justifies the markovian
+approximation \cite{daley2014quantum}. Two atomic emissions would be
+correlated if one of the emissions stay registered in the environment
+and, somehow, influence the second emission.
+
+For an atom inside a cavity, before a photon, emitted from the atom
+into the cavity mode, leaks the cavity, it will interact with the atom
+for some time. This interaction could create a correlation between
+photons that leak the cavity through its mirror and photons that are
+emitted from the atom to the cavity side (spontaneous emissions).
+
+We use quantum trajectories to calculate the joint probability of the
+number of spontaneous emissions and the number of cavity emissions. A
+quantum trajectory describes a continuously monitored quantum system
+\cite{Carmichael1993Open}. In our case each trajectory gives the
+number of photons emitted in each channel. Simulating a large number
+of trajectories and registering the number of photon emissions into
+the two channels, we obtain its joint probability distribution and
+their correlation. The correlation varies with the cavity linewidth
+and the atom-cavity coupling. For a very bad cavity we recover the
+free space result: there is no correlation between the two channels.
+
+
+This article is organized as follows: A general overview of the
+theoretical model is presented in section \ref{sc:drivenjc}. In
+section \ref{sc:distributions} we obtain the joint probability
+distribution of the  number of spontaneous and cavity emissions. In
+section \ref{sc:correlation} we calculate the correlation between the
+two variables. Concluding remarks are given in section
+\ref{sc:conclusions}
+\begin{center}
+\begin{figure*}
+\includegraphics[scale = 0.65]{newimagepaper.pdf}
+\caption{A driven atom in free space (a) and inside a driven leaky
+  cavity (b). We count the number of photons $m$ and $n$, emitted by
+  the atom in two different directions. For the atom in free space
+  there is no correlation between $m$ and $n$. For the atom inside the
+  leaky cavity we find a correlation between $m$ and $n$.}\label{asa}
+\end{figure*}
+\end{center}
+
+
+\section{Theoretical model}\label{sc:drivenjc}
+We consider a system consisting of a two-level atom, coupled to a mode
+of a leaky cavity. The mode is driven by a coherent field resonant
+with the atomic transition and the cavity mode.
+The Hamiltonian of this system, in the rotating wave approximation, is
+given by
+\begin{equation}
+H_s = H_{at} + H_{cav} + H_{atcav} + H_{lascav}, \label{mainham}  
+\end{equation}
+where the atom and cavity terms are, respectively
+\begin{subequations}
+\begin{equation}
+H_{at} = \tfrac{1}{2}\hbar \omega \sigma_z,    
+\end{equation}
+\begin{equation}
+H_{cav} = \hbar \omega  a^\dagger a,  
+\end{equation}
+$\omega$ is the cavity mode frequency and the atomic transition
+frequency. The atom is in resonance with the cavity mode. 
+The coupling between atom and cavity, and cavity and coherent
+field are
+\begin{equation}
+H_{atcav} = i\hbar g(a\sigma_+ - a^\dagger \sigma_-),    
+\end{equation}
+\begin{equation}
+H_{lascav} = i\hbar \mathcal{E}(ae^{i\omega t} - a^\dagger e^{-i\omega t}),    
+\end{equation}
+\end{subequations}
+where the annihilation operator $a$ of a single photon in the cavity,
+and the creation operator $a^\dagger$ obey $[a, a^\dagger] = 1$. The
+operators $\sigma_-, \sigma_+$ account for the atomic lowering and
+raising operators, respectively, and the operator $\sigma_z$ accounts
+for the population difference between the atomic levels. These
+operators obey
+$[\sigma_+, \sigma_-] = \sigma_z, \ [\sigma_\pm, \sigma_z] = \mp
+2\sigma_\pm$. The strength of the coupling between atom and cavity
+field is given by the constant
+\begin{equation}
+g = \sqrt{\frac{\omega d^2}{2\hbar \epsilon_0 V_Q}},
+\end{equation}
+where $V_Q$ is the mode volume, $d$ is the atomic dipole, and
+$\epsilon_0$ is the permittivity of free space. $\mathcal{E}$ is a
+term proportional to the coherent field that drives the cavity in
+resonance. Dissipation is introduced by the following non-hermitian
+Hamiltonian
+\begin{equation} \label{nh}
+H_{nh} = H_{dec} + H_{leak},
+\end{equation}
+where the terms corresponding to spontaneous emission of the atom and cavity losses are
+\begin{subequations}
+\begin{equation}
+H_{dec} = - i\hbar\frac{\gamma}{2}\sigma_+\sigma_-,
+\end{equation}
+\begin{equation}
+H_{leak} = - i\hbar\kappa a^\dagger a\, ,
+\end{equation}
+\end{subequations}
+where $\kappa$ and $\gamma$ are the cavity loss and spontaneous decay
+rate. The evolution between jumps is given by $H=H_s+H_{nh}$. This
+evolution is interrupted by spontaneous emission by the atom or when a
+photon leaks the cavity. 
+
+We now summarize the quantum trajectory formalism \cite{bla} that we
+use to solve the system. Each quantum trajectory is simulated as
+follows. We start with a state which represents a ground state of the
+atom with no photons in the cavity,
+$\ket{\phi(t = 0)} = \ket{\downarrow} \times \ket{0}$, we evolve it
+with the Schr\"odinger equation through some time $\delta t$, using the
+non-hermitian Hamiltonian
+\begin{equation}
+H = H_s +H_{nh}\, .
+\end{equation}
+The evolution of the state through the Schrodinger equation will be
+interrupted by a quantum jump – an abrupt change on our state in which
+a photoemission has occurred. The probability for such quantum jump to
+happen, during the time step $\delta t$, is given by the collapse
+probability
+\begin{equation} \label{probcol}
+\delta p = \sum_n \delta p_n,
+\end{equation}
+where
+
+\begin{subequations}\label{relprob}
+  \begin{eqnarray}  \delta p_1 &=& \gamma \bra{\phi
+      (t)} \sigma_+
+                                                  \sigma_-\ket{\psi (t)}\delta t\, , \\
+    \delta p_2 &=& 2\kappa \bra{\phi (t)} a^\dagger a\ket{\psi
+                   (t)}\delta t \, .
+  \end{eqnarray}
+\end{subequations}
+\makeatletter
+\makeatother
+\begin{algorithm}
+\caption{Pseudocode for register of cavity losses and atom's spontaneous emissions}
+\label{alg1}
+\begin{algorithmic}
+%\caption{Pseudocode for register of cavity losses and atom's spontaneous emissions}
+\STATE $N$: number of temporal intervals
+\STATE $N_A $: number of spontaneous emissions
+\STATE $N_C$: number of cavity emissions
+\STATE $N_{max}$: maximum number of cavity emissions
+\STATE $N_{CA}$: matrix relating the number of cavity emissions with the number of spontaneous emissions
+
+
+\STATE
+\STATE Initial conditions:
+\STATE $N_A = 0; N_C = 0;$
+\STATE $N_{CA} = \text{zeros}(N_{max},2);  k = 0;$ 
+
+\STATE 
+
+\FOR{$i = 1$ to N} 
+\STATE $\ket{ \phi^1(t + \delta t)} = e^{-iH\delta t/\hbar}\ket{\phi (t)}$
+\STATE$ \delta p_1 = \delta t\bra{\phi(t)}C^\dagger_1 C_1\ket{\phi(t)}$
+\STATE $ \delta p_2 =  \delta t\bra{\phi(t)}C^\dagger_2 C_2\ket{\phi(t)}$
+\STATE $\delta p = \delta p_1 + \delta p_2$
+\IF {$\delta p > \epsilon$}
+\IF{$ \tfrac{\delta p_1}{\delta p} > \epsilon$}
+\STATE $\ket{\phi (t + \delta t)} = \frac{C_1 \ket{ \ \phi(t)}}{\sqrt \frac{\delta p_1}{\delta t}}$
+\STATE $N_A = N_A + 1$
+\ELSE
+\STATE $\ket{\phi (t + \delta t)} = \frac{C_2 \ket{ \ \phi(t)}}{\sqrt \frac{\delta p_2}{\delta t}}$
+\STATE $N_C = N_C + 1$
+\STATE $N_{CA}[k+1,1] = N_C$
+\STATE  $N_{CA}[k+1,2] = N_A$
+\STATE $k = k+1$
+\IF{$N_C == N_{max}$}
+\STATE \textbf{\textit{break}}
+\ENDIF
+
+\ENDIF
+\ELSE
+\STATE $\ket{ \phi(t + \delta t)} = \frac{\ket{\phi^1 (t+ \delta t)}}{\sqrt{1-\delta p}}$
+\STATE $t \ += \delta t$
+\ENDIF
+\ENDFOR
+\RETURN  $N_{CA}$
+\end{algorithmic}
+\end{algorithm}
+We compare the collapse probability of Eq.~\eqref{probcol} with a
+random number $\epsilon$, uniformly distributed between zero and one.
+In the case the condition $\delta p > \epsilon$ is fulfilled we
+simulate that a quantum jump has happened, by acting with one of the
+collapse operators $a$ or $\sigma_-$ and renormalizing the obtained
+state. The operator that will act on the state will be given according
+to the relative probabilities of Eqs.~\eqref{relprob}.
+\begin{figure}[!t] 
+\centering
+\includegraphics[scale = 0.5]{distributioneng.pdf}
+\caption{Probability distribution of spontaneous emissions for
+  different number of cavity photons. Parameters: $\expval{n} \approx 1$, $\kappa = g = 0.1\gamma$. } \label{probdiss}
+\end{figure}
+If $\delta p > \epsilon$ is not fulfilled we just renormalize the
+state, because using a non-hermitian Hamiltonian will have as a
+consequence that the probability won't be conserved
+\cite{Sakurai:1167961}. For the next step we repeat the procedure
+using the new state. One quantum trajectory of total time $t_f$ is
+obtained after repeating the previous procedure $t_f/\delta t$ steps.
+For each trajectory we count the number of quantum jumps, the jumps
+corresponding to operator $a$ reduces the number of photons inside the
+cavity and corresponds to a photon that leak the cavity. The jumps
+corresponding to operator $\sigma_-$, send the atom back to the ground
+state and corresponds to a spontaneous emission. The procedure to
+register emissions in the two different channels is summarized in
+algorithm. \ref{alg1}.
+
+We realize a large number of these trajectories and keep track of the
+numbers of emission for each channel, with this data we calculate
+the joint probability distribution of the number of emissions in each
+of the two channels.
+
+\section{Counting photons emitted in different channels}\label{sc:distributions}
+In this section we calculate the probability distribution of the
+number of spontaneous emissions $n_s$, under two different conditions.
+First, we study the distribution probability of $n_s$ when we consider
+the set of quantum trajectories where the number of leaked photons
+from the cavity is $n_c$. This simulates the physical situation where
+we count the number of spontaneous photons until the moment where the
+number of leaked photons from the cavity is $n_c$. It is impossible to
+know in advance how long it takes to the cavity to leak $n_c$ photons,
+thus the duration of each quantum trajectory is not fixed. Second, we
+fix the duration of each quantum trajectory and count the number of
+spontaneous emissions $n_s$, and cavity emissions $n_c$. From the set
+of quantum trajectories evolved a fixed time, we calculate the joint
+probability $p(n_s,n_c)$, of finding $n_s$ spontaneous emissions and
+$n_c$ cavity emissions. Using $p(n_s,n_c)$ we calculate the
+conditional probability $p(n_s|n_c)$, and the correlations between the
+two random variables. This correlation is a measure of how much
+information we can obtain about $n_s$ if we know $n_c$.
+
+The number of total photon emissions depends on how fast the atom is
+excited. In order to do a meaningful comparison when we change
+$\kappa$, we adjust the cavity drive so the mean number of photons
+inside the cavity is the same. If we keep $g$ constant this guarantees
+that the rate of atomic excitation is the same for different $\kappa$.
+
+In order to find the value of the cavity drive $\mathcal{E}$ as a
+function of the mean value of photons inside the cavity, we solve the
+Maxwell-Bloch equations. These equations give the dynamic of our
+system for the variables $\expval{a}, \expval{\sigma_-}$ and
+$\expval{\sigma_z}$ that correspond to the cavity field, atomic
+coherence, and atomic inversion respectively \cite{Alsing_1991}. In
+our case, these equations are
+\begin{subequations} \label{maxbloch}
+\begin{equation} \label{bloch1}
+\dot{z} = (g/2)v + \mathcal{E} - \kappa z,
+\end{equation}
+\begin{equation} \label{bloch2}
+\dot{v} = gmz - (\gamma/2)v,
+\end{equation}
+\begin{equation} \label{bloch3}
+\dot{m} = -2g(z^*v + v^*z) - \gamma(m + 2),
+\end{equation}
+\end{subequations} 
+where we defined $z = e^{i\omega t}\expval{a}$,
+$v = 2e^{i\omega t}\expval{\sigma_-}$ and $m = 2\expval{\sigma_z}$.
+When the system is stable, we obtain, from
+\eqref{maxbloch}, the steady state
+solutions \cite{gagniuc2017markov}
+
+
+\begin{equation} \label{chaf1}
+\expval{a}_{ss} = \frac{\mathcal{E}e^{-i\omega t} +
+  g\expval{\sigma_-}_{ss}}{\kappa}\, ,
+\end{equation}
+\begin{equation} \label{chaf2}
+\expval{\sigma_-}_{ss} = -\frac{2g}{\gamma}\frac{\expval{a}_{ss}}{1 +
+  \frac{8g^2}{\gamma^2}|\expval{a}_{ss}|^2}\, ,
+\end{equation}
+\begin{equation}
+\bigg(\frac{\mathcal{E}}{\kappa}\bigg)^2 = |\expval{a}_{ss}|^2 \bigg(1
++ \frac{2g^2}{\gamma \kappa}\frac{1}{1 +
+  \frac{8g^2}{\gamma^2}|\expval{a}_{ss}|^2}\bigg)^2\, .
+\end{equation}
+When $\gamma \gg g$, the expected value of the number of photons inside
+the cavity is 
+\begin{equation} \label{numfo}
+|\expval{a}_{ss}|^2 \approx \bigg(\frac{\mathcal{E}/\kappa}{1 + 2g^2/\gamma \kappa}\bigg)^2.
+\end{equation}
+
+
+\subsection{Quantum trajectories with fixed number of photons leaked from the cavity}
+We calculate the distribution probability of the number of spontaneous
+emission when a fixed number of photons leaked the cavity. We assume
+that the mean number of photons inside the cavity is $1$. The
+results are shown in Fig.~\ref{probdiss}. As the number of cavity
+emissions increases, the mean number of spontaneous emissions
+increases. This result is expected, because the number of cavity
+emissions is correlated with the time we are counting spontaneous
+emission from the atom: the larger the number of cavity
+emissions the larger the time we count spontaneous emission,
+which implies a larger mean number of emitted photons. Also, as shown
+in Fig~\ref{graph}, the probability distribution is wider as the
+number of leaked photons increases, this implies less accuracy
+guessing the number of spontaneous emission. If we know the cavity
+drive, this results does not imply that we can learn something extra
+about the number of spontaneous emissions knowing the number of
+photons leaked from the cavity; it is clear that when we increase the
+time window where we count photons, both, the number of cavity emissions
+and the number of spontaneous emissions, increases.
+
+In section~\ref{sc:correlation} we will show
+when there is correlation between emissions in the two channels.
+
+\begin{figure}[!h]  
+\centering
+\includegraphics[scale = 0.5]{newsigma1.pdf}
+\caption{Average number of spontaneous emissions with its standard
+  deviation as a function of cavity emissions. Parameters: $\expval{n} \approx 1$, $\kappa = g = 0.1\gamma$}
+\label{graph}
+\end{figure} 
+
+
+
+
+\subsection{Quantum trajectories with fixed duration}
+We consider the set of quantum trajectories of the same duration. This
+corresponds to fixing the time we count photons. Each set of quantum
+trajectories with the same duration is labeled with its mean number
+of spontaneously emitted photons $\langle n_s\rangle$, given the system
+parameters, a larger $\langle n_s\rangle$ implies quantum trajectories
+with larger duration. We consider the case where we fix the mean
+number of photons inside the cavity to $1$. As shown by
+Eq.~(\ref{numfo}), this number depends on the drive, and cavity and
+atomic parameters.
+
+In Fig.~\ref{error2}(a) the probability distribution of spontaneous
+emitted photons is shown for different duration of the quantum
+trajectories. As it is shown in Fig.~\ref{error2}(b), the width of the
+distribution increases linearly with the mean number of spontaneous
+emissions. This behavior does not imply any correlation between the
+number of spontaneous emissions and cavity emissions.
+
+Now we focus in the case, where given a set of quantum trajectories
+with fixed duration $t_f$, we postselect all the trajectories where the
+number of cavity emissions is a fixed number $n_c$, and plot
+$p(n_s|n_c)$, the probability distribution of the number of spontaneous
+emissions $n_s$, under the condition that $n_c$ cavity emissions
+happened. If $p(n_s|n_c)\neq p(n_s)p(n_c)$, $n_s$ and $n_c$ are not
+independent: information can be extracted about $n_s$ knowing $n_c$.
+An example of this is shown in Fig.~\ref{probdisult}(a), where we
+show $p(n_s|n_c)$, the probability distribution of $n_s$ postselected
+to the case where the number of cavity emissions is
+$n_c=\langle n_c \rangle$, and $n_c=\langle n_c \rangle\pm 3 \sigma$. We
+see a positive correlation between the two random variables: the
+maximum of the probability distribution increases (decreases) if we
+postselect the trajectories with a larger than the mean (smaller than
+the mean) number of cavity emissions. In Fig.~\ref{probdisult}(b), we
+show that for a cavity with large $\kappa$, the change in the
+probability distribution $p(n_s|n_c)$ is much smaller than in the case
+for small $\kappa$. When
+$\kappa\rightarrow\infty$, there are no correlation between the two
+channels and $p(n_s|n_c)=p(n_s)p(n_c)$.
+In the next section we calculate the correlation between $n_s$ and
+$n_c$ for different $\kappa$.
+
+\begin{center}
+\begin{figure*}[!t]
+\includegraphics[scale = 0.5]{newerrorppp.pdf}
+\caption{(a) Probability distributions for different mean number of
+  spontaneous emissions $\langle n_s\rangle=\bar{n}_s$; (b)
+  Variance of the random variable $n_s$ with respect to the mean number of
+  spontaneous emissions. In both cases we consider
+  $\expval{n} \approx 1$,  $\kappa = g = 0.1\gamma$.} \label{error2}
+\end{figure*}
+\end{center}
+
+
+\begin{center}
+\begin{figure*}
+\begin{center}
+\includegraphics[scale = 0.5]{lastgraph1.pdf}
+\caption{Probability distribution of spontaneous emissions
+  postselected to the condition that $n_c$ cavity emissions happened
+  $p(n_s|n_c)$; observe, in both figures, the change in the
+  probability distribution for spontaneous emissions for different
+  postselections. (a) $\kappa = 0.05\gamma$,
+  $\langle n_c\rangle=\bar{n}_c=50$, $\sigma=7$; (b) 
+  $\kappa = 1.0$, $\langle n_c\rangle=\bar{n}_c=1000$, $\sigma=28$.
+  Other parameters $\expval{n} \approx 1$, $g =0.1\gamma$,
+  time of each trajectory: $500/\gamma$. } \label{probdisult}
+\end{center}
+\end{figure*}
+\end{center}
+
+
+\section{Correlation between photons emitted in different channels}\label{sc:correlation}
+In this section we study the correlation between the number of
+spontaneous emissions from the atom $n_s$, and the number of photons
+that leak the cavity $n_c$, as a function of the cavity decay rate
+$\kappa$. We expect that when $\kappa\rightarrow\infty$ there would be
+no correlation between these two random variables, since this
+situation is equivalent to the situation where there is no
+cavity.
+
+In order to calculate the correlation between emissions in the two
+different channels, we use the Pearson correlation coefficient
+\cite{benesty2009pearson}
+\begin{equation} 
+r_{n_s,n_c} = \frac{\sum\limits_{i=1}^n(n_s^{(i)} -
+  \bar{n}_s)(n_c^{(i)} - \bar{n}_c)}{\sqrt{\sum\limits_{i=1}^n(n_s^{(i)}
+    - \bar{n}_s)^2\sum\limits_{i=1}^n(n_c^{(i)} - \bar{n}_c)^2}}\, ,  \label{correlationc}
+\end{equation}
+where $n^{(i)}$ is the output $i$ of the random variable $n$.
+
+\begin{center}
+\begin{figure}[t!]
+\begin{center}
+\includegraphics[scale = 0.5]{million1.pdf}
+\caption{Pearson correlation coefficient as a function of $\kappa$.
+  The duration of the quantum trajectories is  $\gamma t_f = 500$.
+  Other parameters $\expval{n} \approx 1$, $g = 0.1\gamma$.} \label{corrxy}
+\end{center}  
+\end{figure}
+\end{center}
+
+\begin{center}
+\begin{figure}[h!]
+\begin{center}
+\includegraphics[scale = 0.5]{million2.pdf}
+\caption{Pearson correlation coefficient as a function of $\kappa$ for
+  quantum trajectories with different duration. Parameters:
+  $\expval{n} \approx 1$, $g = 0.1\gamma$.} \label{errorzz}
+\end{center}
+\end{figure}
+\end{center}
+
+The results are shown in Fig. \ref{corrxy}. We observe a maximum
+correlation, close to $0.1$, for $\kappa/\gamma\approx 0.05$. From
+there the correlation decreases as $\kappa$ increases. The figure is
+consistent with the statement that the correlation goes to zero as
+$\kappa\rightarrow\infty$. With values for $\kappa/\gamma$ lower than
+$0.05$, we notice that the correlations begins to decrease. The reason
+is that, as the cavity linewidth decreases, the number of cavity
+emissions decreases. In the limit where $\kappa=0$ the two random
+variables become independent, because the output of $n_c$ is zero
+with probability one. In this case there is no correlation between the
+two random variables. Fig.~\ref{probdisult}(a), where the change in
+$p(n_s|n_c)$ is larger, corresponds to a correlation around $0.1$;
+Fig.~\ref{probdisult}(b), where the change is small, corresponds to a
+correlation around $0.01$.
+
+
+In Fig. \ref{errorzz} we plot the Pearson correlation coefficient as a
+function of $\kappa/\gamma$ for different durations of the quantum
+trajectories. We observe a small increment of the correlation
+because more photons leaks the cavity, giving information about the
+system.
+
+
+\section{Conclusions}\label{sc:conclusions}
+Atomic emissions in cavity and non-cavity modes of an atom inside a
+leaky cavity are correlated. The correlations are produced because the
+cavity breaks the markovian behavior of atomic emission. The presence
+of correlation between photons measured in different directions is a
+signature of non-markovian behavior. This correlation allows us to
+improve the knowledge we know about the probability distribution of
+atomic spontaneous emission if we know the number of photons that leak
+the cavity. In the system configuration that we studied the maximum
+correlation is small. Nevertheless, we think that the results
+encourage to explore different configurations where the correlation
+can be larger.
+
+
+\section{Authors contributions}
+All the authors were involved in the preparation of the manuscript.
+All the authors have read and approved the final manuscript.
+
+
+\begin{acknowledgement}
+This work was supported by DGAPA-UNAM under grant PAPIIT-IG120518.
+\end{acknowledgement}
+
+\bibliography{../reftesis}% Produces the bibliography via BibTeX.
+
+\end{document}
+%
+% ****** End of file apssamp.tex ******
